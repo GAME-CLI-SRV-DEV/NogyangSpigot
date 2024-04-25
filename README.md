@@ -31,6 +31,9 @@ runDev - Spin up a non-relocated Mojang-mapped test server
 runReobf - Spin up a test server from the reobfJar output jar
 runShadow - Spin up a test server from the shadowJar archiveFile
 ```
+## Dependencies Used:
+GeyserMC - Cumulus & Floodgate API
+ViaVersion - ViaAPI & Backwards-Rewind-Bedrock
 ## Credits
 ```
 Bukkit Team & Spigot Team & Paper Team
