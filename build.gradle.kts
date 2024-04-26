@@ -64,7 +64,7 @@ val initSubmodules by tasks.registering {
 }
 
 paperweight {
-    serverProject = project(":forktest-server")
+    serverProject = project(":NogyangSpigot-server")
 
     remapRepo = paperMavenPublicUrl
     decompileRepo = paperMavenPublicUrl
@@ -111,8 +111,8 @@ paperweight {
 //
 
 tasks.generateDevelopmentBundle {
-    apiCoordinates = "com.example.paperfork:forktest-api"
-    mojangApiCoordinates = "io.papermc.paper:paper-mojangapi"
+    apiCoordinates = "kr.ms.nogyang.nogyangspigot:NogyangSpigot-api"
+    mojangApiCoordinates = "kr.ms.nogyang.nogyangspigot:NogyangSpigot-mojangapi"
     libraryRepositories = listOf(
         "https://repo.maven.apache.org/maven2/",
         paperMavenPublicUrl,
