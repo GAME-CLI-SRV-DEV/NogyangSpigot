@@ -9,6 +9,6 @@ plugins {
     id("org.gradle.toolchains.foojay-resolver-convention") version "0.7.0"
 }
 
-rootProject.name = "forktest"
+rootProject.name = "NogyangSpigot"
 
-include("forktest-api", "forktest-server")
+include("NogyangSpigot-api", "NogyangSpigot-server")
