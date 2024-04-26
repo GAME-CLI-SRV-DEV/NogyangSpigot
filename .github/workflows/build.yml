@@ -25,6 +25,6 @@ jobs:
       - name: Configure Git User Details
         run: git config --global user.email "actions@github.com" && git config --global user.name "Github Actions"
       - name: Apply Patches
-        run: ./gradlew applyPatches
+        run: ./gradlew applyPatches --stacktrace --info --scan --debug
       - name: Build
         run: ./gradlew createreobfpaperclipjar
