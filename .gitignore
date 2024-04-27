@@ -46,8 +46,10 @@ out/
 # other stuff
 run/
 
-forktest-server
-forktest-api
+
+NogyangSpigot-server
+NogyangSpigot-api
+NogyangSpigot-mojangapi
 paper-api-generator
 
 !gradle/wrapper/gradle-wrapper.jar
