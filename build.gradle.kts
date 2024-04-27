@@ -86,7 +86,7 @@ paperweight {
 
                 register("MojangApi") {
                     isBareDirectory = true
-                    upstreamDir = paperDir.dir("paper-mojangapi")
+                    upstreamDir = paperDir.dir("Paper-Mojangapi")
                     patchDir = layout.projectDirectory.dir("patches/mojangApi")
                     outputDir = layout.projectDirectory.dir("NogyangSpigot-MojangAPI")
                 }
