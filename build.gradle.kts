@@ -76,6 +76,7 @@ paperweight {
                 dependsOn(initSubmodules)
                 projectDir = paperDir
             }
+}
 
             patchTasks {
                 register("api") {
