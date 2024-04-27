@@ -76,7 +76,7 @@ paperweight {
                 dependsOn(initSubmodules)
                 projectDir = paperDir
             }
-}
+
 
             patchTasks {
                 register("api") {
@@ -110,7 +110,6 @@ paperweight {
             }
         }
     }
-}
 
 //
 // Everything below here is optional if you don't care about publishing API or dev bundles to your repository
