@@ -1,5 +1,17 @@
 # NogyangSpigot
 a Paper Fork to Memorize the life of the 2 cats called Beodeul And Nogyang at Nogyang Middle School.
+
+## Update Standby:
+git-NogyangSpigot-1.20.5 (MC: 1.20.5, Reobf Paperclip Jar)
+Update Containing Bukkit API 1.20.5-R0.1-SNAPSHOT, Floodgate API 2.2.3, ViaVersion API 4.9.9. or 5.x and ViaModules.
+Minor Update - NogyangSpigotWebLogin-GeyserMCWebLogin
+git-NogyangSpigot-1.20.6 (MC: 1.20.6, Reobf Paperclip Jar)
+Update Containing Bukkit API 1.20.6-R0.1-SNAPSHOT, Floodgate API ?.?.?, ViaVersion API ?.?.? and ViaModules.
+
+## NogyangSpigot Utilizes a ViaVersion & Legacy
+Who Needs ProtocolSupport when NogyangSpigot Utilizes the ViaLegacy?
+If You Are Using Paper, You Can Upgrade to NogyangSpigot.
+
 ## Message To The Official Author Of Bukkit,Wesley Wolfe
 Dear Wesley Wolfe,
 
@@ -7,7 +19,7 @@ I wanted to take a moment to express my gratitude for your contributions to the 
 
 Your dedication to the Bukkit project has not gone unnoticed, and I am grateful for the time and effort you have put into it. Thank you again for your contributions, and I wish you all the best in your future endeavors.
 
-Sincerely, CensingSmile123//MFirms548
+Sincerely, Me(outfit8TSB/MFirms548/CensingSmile123)
 
 ## Tasks
 
