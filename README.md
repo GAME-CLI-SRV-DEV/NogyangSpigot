@@ -1,6 +1,10 @@
 # NogyangSpigot
 a Paper Fork to Memorize the life of the 2 cats called Beodeul And Nogyang at Nogyang Middle School.
 
+> [!CAUTION]
+> This project has reached an 1.20.5 but Geyser update pr is still ongoing.
+> Please Use ViaVersion, Geyser-Floodgate Combo with this. 
+> 
 ## Update Standby:
 git-NogyangSpigot-1.20.5 (MC: 1.20.5, Reobf Paperclip Jar)
 Update Containing Bukkit API 1.20.5-R0.1-SNAPSHOT, Floodgate API 2.2.3, ViaVersion API 4.9.9. or 5.x and ViaModules.
