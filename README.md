@@ -2,15 +2,17 @@
 a Paper Fork to Memorize the life of the 2 cats called Beodeul And Nogyang at Nogyang Middle School.
 
 > [!CAUTION]
-> This project has reached an 1.20.5 but Geyser update pr is still ongoing.
+> This project has reached an 1.20.5/6 but [Geyser Update Pull Request](https://github.com/GeyserMC/Geyser/pull/4097) has a one review required. (1/1 Review left from collaborators!)
 > Please Use ViaVersion, Geyser-Floodgate Combo with this. 
+> Testing Build 1.20.6
 > 
 ## Update Standby:
-git-NogyangSpigot-1.20.5 (MC: 1.20.5, Reobf Paperclip Jar)
-Update Containing Bukkit API 1.20.5-R0.1-SNAPSHOT, Floodgate API 2.2.3, ViaVersion API 4.9.9. or 5.x and ViaModules.
-Minor Update - NogyangSpigotWebLogin-GeyserMCWebLogin
 git-NogyangSpigot-1.20.6 (MC: 1.20.6, Reobf Paperclip Jar)
+Update Containing Bukkit API 1.20.6-R0.1-SNAPSHOT, Floodgate API 2.2.3, ViaVersion API 4.9.9. or 5.x and ViaModules.
+Minor Update - NogyangSpigotWebLogin-GeyserMCWebLogin
+git-NogyangSpigot-1.20.7 (MC: 1.20.7, Reobf Paperclip Jar)
 Update Containing Bukkit API 1.20.6-R0.1-SNAPSHOT, Floodgate API ?.?.?, ViaVersion API ?.?.? and ViaModules.
+
 
 ## NogyangSpigot Utilizes a ViaVersion & Legacy
 Who Needs ProtocolSupport when NogyangSpigot Utilizes the ViaLegacy?
