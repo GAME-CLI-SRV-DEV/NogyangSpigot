@@ -10,7 +10,7 @@ Floodgate API 2.2.3, ViaVersion API 4.9.9.
 > Numerous reports have been received from Bedrock players stating that the plugin has unjustly
 >  banned their friends.
 >
-> In light of these findings, we are issuing a mandatory recall of all Kauri anti-cheat units. If > you are currently using this plugin with NogyangSpigot, we strongly advise you to remove it 
+> In light of these findings, we are issuing a mandatory recall of all Kauri anti-cheat units. If you are currently using this plugin with NogyangSpigot, we strongly advise you to remove it 
 > immediately. This plugin is now considered harmful to Bedrock players and potentially damaging
 > to servers.
 >
