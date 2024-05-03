@@ -1,14 +1,15 @@
 # NogyangSpigot
 a Paper Fork to Memorize the life of the 2 cats called Beodeul And Nogyang at Nogyang Middle School.
+This Version has Finally updated to 1.20.5/6.
+NogyangSpigot-Paperclip-1.20.6-R0.1-SNAPSHOT-reobf.jar will be available in public Soon.
+Floodgate API 2.2.3, ViaVersion API 4.9.9.
 
-> [!CAUTION]
-> This project has reached an 1.20.5/6 but [Geyser Update Pull Request](https://github.com/GeyserMC/Geyser/pull/4590) has a one review required. (1/1 Review left from collaborators!)
-> Please Use ViaVersion, Geyser-Floodgate Combo with this. 
-> Testing Build 1.20.6
-> 
 ## Update Standby:
 git-NogyangSpigot-1.20.6 (MC: 1.20.6, Reobf Paperclip Jar)
 Update Containing Bukkit API 1.20.6-R0.1-SNAPSHOT, Floodgate API 2.2.3, ViaVersion API 4.9.9. or 5.x and ViaModules.
+NogyangSpigot-Paperclip-1.20.6-R0.1-SNAPSHOT-reobf.jar will be available in public Soon.
+Syncs Minecraft: Bedrock Edition 1.20.40 - 1.20.80 and Minecraft: Java Edition 1.20.5/1.20.6
+NogyangSpigot Task: Stand by for 2.2.3 
 Minor Update - NogyangSpigotWebLogin-GeyserMCWebLogin
 git-NogyangSpigot-1.20.7 (MC: 1.20.7, Reobf Paperclip Jar)
 Update Containing Bukkit API 1.20.7-R0.1-SNAPSHOT, Floodgate API ?.?.?, ViaVersion API ?.?.? and ViaModules.
