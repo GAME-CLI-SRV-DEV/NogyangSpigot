@@ -3,6 +3,19 @@ a Paper Fork to Memorize the life of the 2 cats called Beodeul And Nogyang at No
 This Version has Finally updated to 1.20.5/6.
 NogyangSpigot-Paperclip-1.20.6-R0.1-SNAPSHOT-reobf.jar will be available in public Soon.
 Floodgate API 2.2.3, ViaVersion API 4.9.9.
+> [!CAUTION]
+> Attention all NogyangSpigot users, This is an urgent Public Service Announcement from the NogyangSpigot Plugin Product Safety Commission. We have identified a critical issue with the Kauri anti-cheat plugin, manufactured by funkemunky.
+>
+> It has come to our attention that this plugin is causing false positives for Bedrock players.
+> Numerous reports have been received from Bedrock players stating that the plugin has unjustly
+>  banned their friends.
+>
+> In light of these findings, we are issuing a mandatory recall of all Kauri anti-cheat units. If > you are currently using this plugin with NogyangSpigot, we strongly advise you to remove it 
+> immediately. This plugin is now considered harmful to Bedrock players and potentially damaging
+> to servers.
+>
+> Effective immediately, we are severing all ties with funkemunky. We are also considering issuing an order for the developers to disband. funkemunky is now considered an adversary of NogyangSpigot and Bedrock users.
+We thank you for your understanding and cooperation in this matter. Our priority is to ensure a safe and enjoyable gaming environment for all players.
 
 ## Update Standby:
 git-NogyangSpigot-1.20.6 (MC: 1.20.6, Reobf Paperclip Jar)
