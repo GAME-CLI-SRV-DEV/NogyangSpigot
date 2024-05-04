@@ -9,7 +9,7 @@ plugins {
     id("com.github.johnrengelman.shadow") version "8.1.1" apply false
 
     // In general, keep this version in sync with upstream. Sometimes a newer version than upstream might work, but an older version is extremely likely to break.
-    id("io.papermc.paperweight.patcher") version "1.5.15"
+    id("io.papermc.paperweight.patcher") version "1.6.2"
 }
 
 val paperMavenPublicUrl = "https://repo.papermc.io/repository/maven-public/"
@@ -33,7 +33,7 @@ allprojects {
 
     java {
         toolchain {
-            languageVersion = JavaLanguageVersion.of(17)
+            languageVersion = JavaLanguageVersion.of(21)
         }
     }
 }
