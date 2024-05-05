@@ -13,7 +13,7 @@ index 3275a3bf46b2751813a75f9940841a78272143e5..4bbef4d060fc732c2af7a15e1b022224
  
  dependencies {
 -    implementation(project(":paper-api"))
-+    implementation(project(":NogyangSpigot-API")) // ForkTest
++    implementation(project(":NogyangSpigot-api")) // ForkTest
      api("com.mojang:brigadier:1.0.18")
  
      compileOnly("it.unimi.dsi:fastutil:8.5.6")
