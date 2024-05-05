@@ -1,0 +1,20 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: Outfit8TSB <sunnybunnies09@naver.com>
+Date: Tue, 23 Apr 2024 08:58:00 +0900
+Subject: [PATCH] adventure add
+
+diff --git a/build.gradle.kts b/build.gradle.kts
+index 81cdc6c..dc84641 100644
+--- a/build.gradle.kts
++++ b/build.gradle.kts
+@@ -8,6 +8,10 @@ java {
+     withJavadocJar()
+ }
+
++ repositories {
++    maven("https://raw.githubusercontent.com/GAME-CLI-SRV-DEV/NogyangSpigot-Terminals-Repos/main/snapshots/")
++    }
++
+ dependencies {
+     implementation(project(":NogyangSpigot-api")) // ForkTest
+     api("com.mojang:brigadier:1.0.18")
