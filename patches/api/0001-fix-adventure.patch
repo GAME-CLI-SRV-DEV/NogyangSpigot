@@ -12,7 +12,7 @@ index 65e67b87..38d2c251 100644
  }
 
 +repositories {
-+    maven("https://github.com/GAME-CLI-SRV-DEV/NogyangSpigot-Terminals-Repos/tree/main/snapshots/")
++    maven("https://raw.githubusercontent.com/GAME-CLI-SRV-DEV/NogyangSpigot-Terminals-Repos/main/snapshots/")
 +    }
 +
  dependencies {
