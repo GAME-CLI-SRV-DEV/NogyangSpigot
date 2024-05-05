@@ -1,0 +1,261 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: Outfit8TSB <sunnybunnies09@naver.com>
+Date: Tue, 23 Apr 2024 08:58:00 +0900
+Subject: [PATCH] HotFix Fix Errors
+
+diff --git a/src/main/java/com/destroystokyo/paper/entity/ai/PaperVanillaGoal.java b/src/main/java/com/destroystokyo/paper/entity/ai/PaperVanillaGoal.java
+index 1762e3d76..b51687f52 100644
+--- a/src/main/java/com/destroystokyo/paper/entity/ai/PaperVanillaGoal.java
++++ b/src/main/java/com/destroystokyo/paper/entity/ai/PaperVanillaGoal.java
+@@ -36,7 +36,6 @@ public class PaperVanillaGoal<T extends Mob> {
+         handle.start();
+     }
+
+-    @Override
+     public void stop() {
+         handle.stop();
+     }
+diff --git a/src/main/java/net/minecraft/world/damagesource/DamageSource.java b/src/main/java/net/minecraft/world/damagesource/DamageSource.java
+index 359a2f049..015330715 100644
+--- a/src/main/java/net/minecraft/world/damagesource/DamageSource.java
++++ b/src/main/java/net/minecraft/world/damagesource/DamageSource.java
+@@ -182,7 +182,7 @@ public class DamageSource {
+     }
+
+     public boolean scalesWithDifficulty() {
+-        boolean flag;
++        boolean flag = false;
+
+         switch (this.type().scaling()) {
+             case NEVER:
+@@ -195,7 +195,7 @@ public class DamageSource {
+                 flag = true;
+                 break;
+             default:
+-                throw new MatchException((String) null, (Throwable) null);
++                System.out.println("we had to sell this due to budget cuts");
+         }
+
+         return flag;
+diff --git a/src/main/java/net/minecraft/world/entity/LivingEntity.java b/src/main/java/net/minecraft/world/entity/LivingEntity.java
+index 6e043457a..5b7d73b83 100644
+--- a/src/main/java/net/minecraft/world/entity/LivingEntity.java
++++ b/src/main/java/net/minecraft/world/entity/LivingEntity.java
+@@ -3232,9 +3232,10 @@ public abstract class LivingEntity extends Entity implements Attackable {
+                     itemstack = this.lastBodyItemStack;
+                     break;
+                 default:
+-                    throw new MatchException((String) null, (Throwable) null);
++                    System.out.println("we had to sell this due to budget cuts");
+             }
+
++            itemstack = ItemStack.EMPTY;
+             ItemStack itemstack1 = itemstack;
+             ItemStack itemstack2 = this.getItemBySlot(enumitemslot);
+
+@@ -4416,7 +4417,7 @@ public abstract class LivingEntity extends Entity implements Attackable {
+     }
+
+     public static byte entityEventForEquipmentBreak(EquipmentSlot slot) {
+-        byte b0;
++        byte b0 = 0;
+
+         switch (slot) {
+             case MAINHAND:
+@@ -4441,7 +4442,7 @@ public abstract class LivingEntity extends Entity implements Attackable {
+                 b0 = 65;
+                 break;
+             default:
+-                throw new MatchException((String) null, (Throwable) null);
++                System.out.println("we had to sell this due to budget cuts");
+         }
+
+         return b0;
+diff --git a/src/main/java/net/minecraft/world/entity/Mob.java b/src/main/java/net/minecraft/world/entity/Mob.java
+index e89f9c3e8..e22388a32 100644
+--- a/src/main/java/net/minecraft/world/entity/Mob.java
++++ b/src/main/java/net/minecraft/world/entity/Mob.java
+@@ -1145,7 +1145,7 @@ public abstract class Mob extends LivingEntity implements EquipmentUser, Targeti
+
+     @Override
+     public ItemStack getItemBySlot(EquipmentSlot slot) {
+-        ItemStack itemstack;
++        ItemStack itemstack = ItemStack.EMPTY;
+
+         switch (slot.getType()) {
+             case HAND:
+@@ -1158,7 +1158,7 @@ public abstract class Mob extends LivingEntity implements EquipmentUser, Targeti
+                 itemstack = this.bodyArmorItem;
+                 break;
+             default:
+-                throw new MatchException((String) null, (Throwable) null);
++                System.out.println("we had to sell this due to budget cuts");
+         }
+
+         return itemstack;
+@@ -1228,7 +1228,7 @@ public abstract class Mob extends LivingEntity implements EquipmentUser, Targeti
+     }
+
+     protected float getEquipmentDropChance(EquipmentSlot slot) {
+-        float f;
++        float f =0.0f;
+
+         switch (slot.getType()) {
+             case HAND:
+@@ -1241,7 +1241,7 @@ public abstract class Mob extends LivingEntity implements EquipmentUser, Targeti
+                 f = this.bodyArmorDropChance;
+                 break;
+             default:
+-                throw new MatchException((String) null, (Throwable) null);
++                System.out.println("we had to sell this due to budget cuts");
+         }
+
+         return f;
+diff --git a/src/main/java/net/minecraft/world/entity/animal/Sheep.java b/src/main/java/net/minecraft/world/entity/animal/Sheep.java
+index 3ce86f952..4e56538f2 100644
+--- a/src/main/java/net/minecraft/world/entity/animal/Sheep.java
++++ b/src/main/java/net/minecraft/world/entity/animal/Sheep.java
+@@ -168,7 +168,7 @@ public class Sheep extends Animal implements Shearable {
+         if (this.isSheared()) {
+             return this.getType().getDefaultLootTable();
+         } else {
+-            ResourceKey resourcekey;
++            ResourceKey resourcekey = null;
+
+             switch (this.getColor()) {
+                 case WHITE:
+@@ -220,7 +220,7 @@ public class Sheep extends Animal implements Shearable {
+                     resourcekey = BuiltInLootTables.SHEEP_BLACK;
+                     break;
+                 default:
+-                    throw new MatchException((String) null, (Throwable) null);
++                    System.out.println("we had to sell this due to budget cuts");
+             }
+
+             return resourcekey;
+diff --git a/src/main/java/net/minecraft/world/entity/projectile/AbstractArrow.java b/src/main/java/net/minecraft/world/entity/projectile/AbstractArrow.java
+index 31b8a8bf7..0b4465950 100644
+--- a/src/main/java/net/minecraft/world/entity/projectile/AbstractArrow.java
++++ b/src/main/java/net/minecraft/world/entity/projectile/AbstractArrow.java
+@@ -609,7 +609,7 @@ public abstract class AbstractArrow extends Projectile {
+     }
+
+     protected boolean tryPickup(Player player) {
+-        boolean flag;
++        boolean flag = false;
+
+         switch (this.pickup.ordinal()) {
+             case 0:
+@@ -622,7 +622,7 @@ public abstract class AbstractArrow extends Projectile {
+                 flag = player.hasInfiniteMaterials();
+                 break;
+             default:
+-                throw new MatchException((String) null, (Throwable) null);
++                System.out.println("we had to sell this due to budget cuts");
+         }
+
+         return flag;
+diff --git a/src/main/java/net/minecraft/world/item/crafting/RecipeManager.java b/src/main/java/net/minecraft/world/item/crafting/RecipeManager.java
+index a31326e24..0bf13ad5f 100644
+--- a/src/main/java/net/minecraft/world/item/crafting/RecipeManager.java
++++ b/src/main/java/net/minecraft/world/item/crafting/RecipeManager.java
+@@ -105,7 +105,7 @@ public class RecipeManager extends SimpleJsonResourceReloadListener {
+         List<RecipeHolder<T>> list = this.byType(type).stream().filter((recipeholder) -> {
+             return recipeholder.value().matches(inventory, world);
+         }).toList();
+-        Optional<RecipeHolder<T>> recipe = (list.isEmpty()) ? Optional.empty() : Optional.of(list.getLast()); // CraftBukkit - SPIGOT-4638: last recipe gets priority
++        Optional<RecipeHolder<T>> recipe = (list.isEmpty()) ? Optional.empty() : Optional.of(list.get(list.size() - 1)); // CraftBukkit - SPIGOT-4638: last recipe gets priority
+         inventory.setCurrentRecipe(recipe.orElse(null)); // CraftBukkit - Clear recipe when no recipe is found
+         return recipe;
+         // CraftBukkit end
+@@ -125,7 +125,7 @@ public class RecipeManager extends SimpleJsonResourceReloadListener {
+         List<RecipeHolder<T>> list = this.byType(type).stream().filter((recipeholder1) -> {
+             return recipeholder1.value().matches(inventory, world);
+         }).toList();
+-        Optional<RecipeHolder<T>> recipe = (list.isEmpty()) ? Optional.empty() : Optional.of(list.getLast()); // CraftBukkit - SPIGOT-4638: last recipe gets priority
++        Optional<RecipeHolder<T>> recipe = (list.isEmpty()) ? Optional.empty() : Optional.of(list.get(list.size() - 1)); // CraftBukkit - SPIGOT-4638: last recipe gets priority
+         inventory.setCurrentRecipe(recipe.orElse(null)); // CraftBukkit - Clear recipe when no recipe is found
+         return recipe;
+         // CraftBukkit end
+diff --git a/src/main/java/net/minecraft/world/level/Level.java b/src/main/java/net/minecraft/world/level/Level.java
+index b4ef3ad2c..ba52aa588 100644
+--- a/src/main/java/net/minecraft/world/level/Level.java
++++ b/src/main/java/net/minecraft/world/level/Level.java
+@@ -1369,7 +1369,7 @@ public abstract class Level implements LevelAccessor, AutoCloseable {
+     }
+
+     public Explosion explode(@Nullable Entity entity, @Nullable DamageSource damageSource, @Nullable ExplosionDamageCalculator behavior, double x, double y, double z, float power, boolean createFire, Level.ExplosionInteraction explosionSourceType, boolean particles, ParticleOptions particle, ParticleOptions emitterParticle, Holder<SoundEvent> soundEvent) {
+-        Explosion.BlockInteraction explosion_effect;
++        Explosion.BlockInteraction explosion_effect = null;
+
+         switch (explosionSourceType.ordinal()) {
+             case 0:
+@@ -1393,7 +1393,7 @@ public abstract class Level implements LevelAccessor, AutoCloseable {
+                 break;
+             // CraftBukkit end
+             default:
+-                throw new MatchException((String) null, (Throwable) null);
++                System.out.println("We Had To Sell matchexception due to budget cuts.");
+         }
+
+         Explosion.BlockInteraction explosion_effect1 = explosion_effect;
+diff --git a/src/main/java/net/minecraft/world/level/block/ButtonBlock.java b/src/main/java/net/minecraft/world/level/block/ButtonBlock.java
+index 776357342..9e991ff7a 100644
+--- a/src/main/java/net/minecraft/world/level/block/ButtonBlock.java
++++ b/src/main/java/net/minecraft/world/level/block/ButtonBlock.java
+@@ -95,7 +95,7 @@ public class ButtonBlock extends FaceAttachedHorizontalDirectionalBlock {
+
+                 return flag ? ButtonBlock.PRESSED_FLOOR_AABB_Z : ButtonBlock.FLOOR_AABB_Z;
+             case WALL:
+-                VoxelShape voxelshape;
++                VoxelShape voxelshape = null;
+
+                 switch (enumdirection) {
+                     case EAST:
+@@ -113,7 +113,7 @@ public class ButtonBlock extends FaceAttachedHorizontalDirectionalBlock {
+                         voxelshape = flag ? ButtonBlock.PRESSED_NORTH_AABB : ButtonBlock.NORTH_AABB;
+                         break;
+                     default:
+-                        throw new MatchException((String) null, (Throwable) null);
++                        System.out.println("we had to sell this due to budget cuts");
+                 }
+
+                 return voxelshape;
+diff --git a/src/main/java/net/minecraft/world/level/block/DoorBlock.java b/src/main/java/net/minecraft/world/level/block/DoorBlock.java
+index 42d43b7a7..2650a2cf1 100644
+--- a/src/main/java/net/minecraft/world/level/block/DoorBlock.java
++++ b/src/main/java/net/minecraft/world/level/block/DoorBlock.java
+@@ -121,7 +121,7 @@ public class DoorBlock extends Block {
+
+     @Override
+     protected boolean isPathfindable(BlockState state, PathComputationType type) {
+-        boolean flag;
++        boolean flag = false;
+
+         switch (type) {
+             case LAND:
+@@ -132,7 +132,7 @@ public class DoorBlock extends Block {
+                 flag = false;
+                 break;
+             default:
+-                throw new MatchException((String) null, (Throwable) null);
++                System.out.println("we had to sell this due to budget cuts");
+         }
+
+         return flag;
+diff --git a/src/main/java/net/minecraft/world/level/block/PressurePlateBlock.java b/src/main/java/net/minecraft/world/level/block/PressurePlateBlock.java
+index 96ad45656..4c3acc453 100644
+--- a/src/main/java/net/minecraft/world/level/block/PressurePlateBlock.java
++++ b/src/main/java/net/minecraft/world/level/block/PressurePlateBlock.java
+@@ -57,9 +57,9 @@ public class PressurePlateBlock extends BasePressurePlateBlock {
+                 oclass = LivingEntity.class;
+                 break;
+             default:
+-                throw new MatchException((String) null, (Throwable) null);
++                System.out.println("we had to sell this due to budget cuts");
+         }
+-
++        oclass = Entity.class;
+         Class<? extends Entity> oclass1 = oclass;
+
+         // CraftBukkit start - Call interact event when turning on a pressure plate
