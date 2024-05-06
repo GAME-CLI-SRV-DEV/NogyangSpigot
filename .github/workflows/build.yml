@@ -24,11 +24,7 @@ jobs:
           java-version: '17'
       - name: Configure Git User Details
         run: git config --global user.email "actions@github.com" && git config --global user.name "Github Actions"
-      - name: Apply MojangAPI Patches Attempt 1
-        run: ./gradlew applyMojangAPIPatches
-      - name: Apply MojangAPI Patches Attempt 2
-        run: ./gradlew applyMojangAPIPatches
       - name: Apply Patches
         run: ./gradlew applyPatches
-      - name: Build
+      - name: Build NogyangSpigot Jar(Main Jar)
         run: ./gradlew createreobfpaperclipjar
