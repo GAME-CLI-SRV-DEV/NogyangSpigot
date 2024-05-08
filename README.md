@@ -1,8 +1,73 @@
 # NogyangSpigot
 a Paper Fork to Memorize the life of the 2 cats called Beodeul And Nogyang at Nogyang Middle School.
-This Version has Finally updated to 1.20.5/6.
-NogyangSpigot-Paperclip-1.20.6-R0.1-SNAPSHOT-reobf.jar will be available in public Soon.
-Floodgate API 2.2.3, ViaVersion API 4.9.9.
+
+Fun Fact: This Server Also Counted as Minecraft: Java Edition X Minecraft: Bedrock Edition Crossplay Server Software. But Note that Geyser-Spigot & Floodgate-Spigot is Required to run it as Bedrock-Java Crossplay Server. 
+
+("Starting Minecraft: Bedrock Edition + Java Edition Crossplay Server version 1.20.6 + 1.20.80 Java: 1.20.5/6, Bedrock Edition: 1.20.80") 
+
+# Issues
+Known Issues: 
+All Plugin Never Updated to 1.20.6.
+Incompatible with Anti-Cheats that is Incompatible With Geyser when is Transformed into Java X Bedrock Crossplay Server.
+```
+Anti Cheat Incompatiblity when is ran as Crossplay Server:
+Panic: Incompatible With GeyserMC! (False Positives on Bedrock Players, no Compatibility at All)
+Normal: Partially Compatible with GeyserMC (Does not Check/Ignores Bedrock Players)
+Calm: Full Compatibility (Checks Bedrock Players Accurately)
+Wraith(paid) - Panic
+AnticheatReloaded -  Panic
+NoCheatPlus - Panic (Without CompatNCP), Normal (With CompatNCP)
+GodsEye - Panic(If is not ran with GodsEyeGeyserMC), Normal(if ran with GodsEyeGeyserMC)
+AAC (Paid): Normal
+Flappy Anticheat: Normal
+GrimAC : Normal
+Spartan: (Paid) : Normal(when you forgot to Purchase Syn*) Calm (when you Purchase Syn*)
+Vulcan (Paid) : Normal
+Verus (Paid) : Normal
+SoaromaAntiCheat & Continued Edition: Calm
+LightAntiCheat: Calm
+Themis: Calm
+AntiAura(Paid): Calm
+Syn Stands For Spartan: Bedrock Edition. 
+```
+Panic Messages That Will Occur When Anti-Cheat with the Level Panic:
+While Enabling:
+```
+[00:01:01 WARN] AntiCheat Panic: Plugin NoCheatPlus v3.16.0-RC-sMD5NET-b1134 Doesn't Support GeyserMC. Proceed With Caution!
+```
+While Enabled and when it kicked Bedrock players:
+```
+[00:01:01 WARN] Disconnecting .CensingSmile123(IP: ./127.0.0.1:0, UUID: 00000000-0000-0009-01f322b1b6b3, Floodgate Player: Yes): You have been banned for cheating.
+[00:01:01 WARN] .CensingSmile123(IP: ./127.0.0.1:0, UUID: 00000000-0000-0009-01f322b1b6b3, Floodgate Player: Yes) has logged out/lost connection/disconnected for reason: You have been banned for cheating.
+[00:01:01 WARN] NogyangSpigot Crossplay AutoSys: Bedrock Player .CensingSmile123(IP: ./127.0.0.1:0, UUID: 00000000-0000-0009-01f322b1b6b3, Floodgate Player: Yes) has been suddenly disconnected.
+[00:01:01 WARN] NogyangSpigot Crossplay AutoSys: Checking Disconnection Reason...
+[00:01:01 WARN] NogyangSpigot Crossplay AutoSys: Panic: Bedrock Player Ban Has Been Detected! this ban only ruins the harmony of the server.
+[00:01:01 WARN] NogyangSpigot Crossplay AutoSys: Panic: Resolve: Unbanning .CensingSmile123...
+[00:01:01 WARN] NogyangSpigot Crossplay AutoSys: Panic: Resolve: Pardoned IP/Player .CensingSmile123.
+```
+While Enabled and when it kicked Mass Bedrock players:
+```
+[00:01:01 WARN] Disconnecting .CensingSmile123(IP: ./127.0.0.1:0, UUID: 00000000-0000-0009-01f322b1b6b3, Floodgate Player: Yes): You have been banned for cheating.
+[00:01:01 WARN] Disconnecting fardaccount69(IP: ./0.0.0.0:0, UUID: da1da8e2-c906-4dc8-9902-55dc747414d5, Floodgate Player: Yes): You have been banned for cheating.
+[00:01:01 WARN] Disconnecting InvincibleNinja(IP: ./0.0.0.0:0, UUID: e1207832-d685-420e-9101-42521df7bc8d, Floodgate Player: Yes): You have been banned for cheating.
+[00:01:01 WARN] Disconnecting suginoko1(IP: ./0.0.0.0:0, UUID: f70c6080-73c4-43f7-8b4e-bf4cb63482e6, Floodgate Player: Yes): You have been banned for cheating.
+[00:01:01 WARN] .CensingSmile123(IP: ./127.0.0.1:0, UUID: 00000000-0000-0009-01f322b1b6b3, Floodgate Player: Yes) has logged out/lost connection/disconnected for reason: You have been banned for cheating.
+.
+.
+.
+[00:01:01 WARN] NogyangSpigot Crossplay AutoSys: 4 Bedrock Players has been suddenly disconnected.
+[00:01:01 WARN] NogyangSpigot Crossplay AutoSys: Checking Disconnection Reason...
+[00:01:01 WARN] NogyangSpigot Crossplay AutoSys: Panic: Alert: ALERT ALERT ALERT
+[00:01:01 WARN] NogyangSpigot Crossplay AutoSys: Panic: Alert: 4 Bedrock Player Ban Occurred By AntiCheat Has Been Detected! this ban only ruins the harmony of the server.
+[00:01:01 WARN] NogyangSpigot Crossplay AutoSys: Panic: Resolve: Unbanning 4 bedrock Player...
+[00:01:01 WARN] NogyangSpigot Crossplay AutoSys: Panic: Resolve: Pardoned IP/Player .CensingSmile123.(1/4)
+[00:01:01 WARN] NogyangSpigot Crossplay AutoSys: Panic: Resolve: Pardoned IP/Player fardaccount69.(2/4)
+[00:01:01 WARN] NogyangSpigot Crossplay AutoSys: Panic: Resolve: Pardoned IP/Player invincibleninja.(3/4)
+[00:01:01 WARN] NogyangSpigot Crossplay AutoSys: Panic: Resolve: Pardoned IP/Player suginoko1.(4/4)
+[00:01:01 WARN] NogyangSpigot Crossplay AutoSys: Panic: Resolve: Successfully unbanned 4 Bedrock Players.
+```
+
+## PSA
 > [!CAUTION]
 > Attention all NogyangSpigot users, This is an urgent Public Service Announcement from the NogyangSpigot Plugin Product Safety Commission. We have identified a critical issue with the Kauri anti-cheat plugin, manufactured by funkemunky.
 >
