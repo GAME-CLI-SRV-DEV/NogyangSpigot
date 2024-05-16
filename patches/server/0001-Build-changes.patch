@@ -4,10 +4,10 @@ Date: Tue, 23 Apr 2021 08:51:00 +0900
 Subject: [PATCH] Build changes
 
 diff --git a/build.gradle.kts b/build.gradle.kts
-index 4998aff0b..1081049cb 100644
+index 4998aff0b..01bf860ad 100644
 --- a/build.gradle.kts
 +++ b/build.gradle.kts
-@@ -12,8 +12,33 @@ configurations.named(log4jPlugins.compileClasspathConfigurationName) {
+@@ -12,9 +12,42 @@ configurations.named(log4jPlugins.compileClasspathConfigurationName) {
  }
  val alsoShade: Configuration by configurations.creating
 
@@ -40,9 +40,18 @@ index 4998aff0b..1081049cb 100644
 -    implementation(project(":paper-api"))
 +    implementation(project(":NogyangSpigot-api"))
      // Paper start
++       +       // NogyangSpigot Start
++          compileOnly("org.geysermc.cumulus:cumulus:2.0.0-SNAPSHOT")
++          compileOnly("org.geysermc.floodgate:api:2.2.2-SNAPSHOT")
++          compileOnly("com.viaversion:viaversion-api:4.9.2")
++    implementation("net.raphimc:ViaLegacy:2.2.22-SNAPSHOT") // classic servers
++    implementation("net.raphimc:ViaAprilFools:2.0.11-SNAPSHOT") // April Fools!
++    implementation("net.raphimc:ViaBedrock:0.0.5-SNAPSHOT") // Geyser old to latest
++    // NogyangSpigot End
      implementation("org.jline:jline-terminal-jansi:3.21.0")
      implementation("net.minecrell:terminalconsoleappender:1.3.0")
-@@ -144,7 +169,7 @@ fun TaskContainer.registerRunTask(
+     implementation("net.kyori:adventure-text-serializer-ansi:4.17.0") // Keep in sync with adventureVersion from Paper-API build file
+@@ -144,7 +177,7 @@ fun TaskContainer.registerRunTask(
      name: String,
      block: JavaExec.() -> Unit
  ): TaskProvider<JavaExec> = register<JavaExec>(name) {
