@@ -40,7 +40,7 @@ index 4998aff0b..01bf860ad 100644
 -    implementation(project(":paper-api"))
 +    implementation(project(":NogyangSpigot-api"))
      // Paper start
-+       +       // NogyangSpigot Start
++              // NogyangSpigot Start
 +          compileOnly("org.geysermc.cumulus:cumulus:2.0.0-SNAPSHOT")
 +          compileOnly("org.geysermc.floodgate:api:2.2.2-SNAPSHOT")
 +          compileOnly("com.viaversion:viaversion-api:4.9.2")
