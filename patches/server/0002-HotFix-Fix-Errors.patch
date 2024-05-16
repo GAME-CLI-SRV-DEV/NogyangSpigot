@@ -3,18 +3,6 @@ From: Outfit8TSB <sunnybunnies09@naver.com>
 Date: Tue, 23 Apr 2024 08:58:00 +0900
 Subject: [PATCH] HotFix Fix Errors
 
-diff --git a/src/main/java/com/destroystokyo/paper/entity/ai/PaperVanillaGoal.java b/src/main/java/com/destroystokyo/paper/entity/ai/PaperVanillaGoal.java
-index 1762e3d76..b51687f52 100644
---- a/src/main/java/com/destroystokyo/paper/entity/ai/PaperVanillaGoal.java
-+++ b/src/main/java/com/destroystokyo/paper/entity/ai/PaperVanillaGoal.java
-@@ -36,7 +36,6 @@ public class PaperVanillaGoal<T extends Mob> {
-         handle.start();
-     }
-
--    @Override
-     public void stop() {
-         handle.stop();
-     }
 diff --git a/src/main/java/net/minecraft/world/damagesource/DamageSource.java b/src/main/java/net/minecraft/world/damagesource/DamageSource.java
 index 359a2f049..015330715 100644
 --- a/src/main/java/net/minecraft/world/damagesource/DamageSource.java
