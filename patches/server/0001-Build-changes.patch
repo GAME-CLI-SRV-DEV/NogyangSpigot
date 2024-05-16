@@ -40,7 +40,7 @@ index 4998aff0b..01bf860ad 100644
 -    implementation(project(":paper-api"))
 +    implementation(project(":NogyangSpigot-api"))
      // Paper start
-+              // NogyangSpigot Start
++       +       // NogyangSpigot Start
 +          compileOnly("org.geysermc.cumulus:cumulus:2.0.0-SNAPSHOT")
 +          compileOnly("org.geysermc.floodgate:api:2.2.2-SNAPSHOT")
 +          compileOnly("com.viaversion:viaversion-api:4.9.2")
@@ -60,6 +60,48 @@ index 4998aff0b..01bf860ad 100644
      mainClass.set("org.bukkit.craftbukkit.Main")
      standardInput = System.`in`
      workingDir = rootProject.layout.projectDirectory
+diff --git a/src/main/java/com/destroystokyo/paper/entity/ai/PaperVanillaGoal.java b/src/main/java/com/destroystokyo/paper/entity/ai/PaperVanillaGoal.java
+index b5c594a54..ad4f65813 100644
+--- a/src/main/java/com/destroystokyo/paper/entity/ai/PaperVanillaGoal.java
++++ b/src/main/java/com/destroystokyo/paper/entity/ai/PaperVanillaGoal.java
+@@ -24,37 +24,30 @@ public class PaperVanillaGoal<T extends Mob> implements VanillaGoal<T> {
+         return handle;
+     }
+
+-    @Override
+     public boolean shouldActivate() {
+         return handle.canUse();
+     }
+
+-    @Override
+     public boolean shouldStayActive() {
+         return handle.canContinueToUse();
+     }
+
+-    @Override
+     public void start() {
+         handle.start();
+     }
+
+-    @Override
+     public void stop() {
+         handle.stop();
+     }
+
+-    @Override
+     public void tick() {
+         handle.tick();
+     }
+
+-    @Override
+     public GoalKey<T> getKey() {
+         return key;
+     }
+
+-    @Override
+     public EnumSet<GoalType> getTypes() {
+         return types;
+     }
 diff --git a/src/main/java/io/papermc/paper/ServerBuildInfoImpl.java b/src/main/java/io/papermc/paper/ServerBuildInfoImpl.java
 index 790bad049..f1505a46e 100644
 --- a/src/main/java/io/papermc/paper/ServerBuildInfoImpl.java
@@ -72,68 +114,3 @@ index 790bad049..f1505a46e 100644
 +    private static final String BRAND_PAPER_NAME = "NogyangSpigot";
 
      private static final String BUILD_DEV = "DEV";
-diff --git a/src/main/java/com/destroystokyo/paper/entity/ai/PaperVanillaGoal.java b/src/main/java/com/destroystokyo/paper/entity/ai/PaperVanillaGoal.java
-index b5c594a54..1762e3d76 100644
---- a/src/main/java/com/destroystokyo/paper/entity/ai/PaperVanillaGoal.java
-+++ b/src/main/java/com/destroystokyo/paper/entity/ai/PaperVanillaGoal.java
-@@ -7,7 +7,7 @@ import org.bukkit.entity.Mob;
- /**
-  * Wraps vanilla in api
-  */
--public class PaperVanillaGoal<T extends Mob> implements VanillaGoal<T> {
-+public class PaperVanillaGoal<T extends Mob> {
- 
-     private final Goal handle;
-     private final GoalKey<T> key;
-@@ -24,17 +24,14 @@ public class PaperVanillaGoal<T extends Mob> implements VanillaGoal<T> {
-         return handle;
-     }
- 
--    @Override
-     public boolean shouldActivate() {
-         return handle.canUse();
-     }
- 
--    @Override
-     public boolean shouldStayActive() {
-         return handle.canContinueToUse();
-     }
- 
--    @Override
-     public void start() {
-         handle.start();
-     }
-@@ -44,17 +41,14 @@ public class PaperVanillaGoal<T extends Mob> implements VanillaGoal<T> {
-         handle.stop();
-     }
- 
--    @Override
-     public void tick() {
-         handle.tick();
-     }
- 
--    @Override
-     public GoalKey<T> getKey() {
-         return key;
-     }
- 
--    @Override
-     public EnumSet<GoalType> getTypes() {
-         return types;
-     }
-diff --git a/src/main/java/org/bukkit/craftbukkit/util/Versioning.java b/src/main/java/org/bukkit/craftbukkit/util/Versioning.java
-index 774556a62..bffe94a78 100644
---- a/src/main/java/org/bukkit/craftbukkit/util/Versioning.java
-+++ b/src/main/java/org/bukkit/craftbukkit/util/Versioning.java
-@@ -9,9 +9,9 @@ import org.bukkit.Bukkit;
- 
- public final class Versioning {
-     public static String getBukkitVersion() {
--        String result = "Unknown-Version";
-+        String result = "weak-trembling-fortress";
- 
--        InputStream stream = Bukkit.class.getClassLoader().getResourceAsStream("META-INF/maven/io.papermc.paper/paper-api/pom.properties");
-+        InputStream stream = Bukkit.class.getClassLoader().getResourceAsStream("META-INF/maven/kr.ms.nogyang.nogyangspigot/NogyangSpigot-api/pom.properties");
-         Properties properties = new Properties();
- 
-         if (stream != null) {
