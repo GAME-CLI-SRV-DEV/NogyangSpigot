@@ -28,18 +28,6 @@ jobs:
         run: ./gradlew applyPatches
       - name: Build NogyangSpigot Jar(Main Jar)
         run: ./gradlew createreobfpaperclipjar
-      - name: Upload Artifact
-        uses: actions/upload-artifact@v3
-        with:
-          name: NogyangSpigot # Specify the artifact name
-          path: build/libs/NogyangSpigot-Paperclip-1.20.6-R0.1-SNAPSHOT-reobf.jar # Specify the path to your artifact
-      - name: Publish Packages
-        if: startsWith(github.ref_name, 'ver/') || startsWith(github.ref_name, 'dev/')
-        run: |
-          export GITHUB_USERNAME=${{ env.ORG_NAME }}
-          export GITHUB_TOKEN=${{ secrets.GITHUB_TOKEN }}
-          ./gradlew publish --stacktrace
-      
       - name: Get Release Number
         if: startsWith(github.ref_name, 'ver/')
         run: echo "RELEASE=$(git ls-remote --tags origin | grep "build/${{ env.MC_VERSION }}" | wc -l)" >> $GITHUB_ENV
