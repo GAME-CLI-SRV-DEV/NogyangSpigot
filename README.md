@@ -5,6 +5,14 @@ Fun Fact: This Server Also Counted as Minecraft: Java Edition X Minecraft: Bedro
 
 ("Starting Minecraft: Bedrock Edition + Java Edition Crossplay Server version 1.20.6 + 1.20.80 Java: 1.20.5/6, Bedrock Edition: 1.20.80") 
 
+# 빌드 일람
+(i) 액션에서 검출
+(X) 빌드 실패
+(O) 빌드 릴리즈됨
+Commit
+Beta Build 1 - i
+Beta Build 2 - i
+Beta Build 3 - i
 # News
 Upstream Has Removed Paper-MojangAPI, i don't know where did it go.
 i think that the Paper-MojangAPI is removed in future versions.
