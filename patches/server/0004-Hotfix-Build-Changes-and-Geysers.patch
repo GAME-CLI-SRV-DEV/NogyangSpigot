@@ -195,8 +195,7 @@ index 000000000..b7ab72c97
 +
 +    private static String translateColorCodesWithMiniMessage(String message) {
 +        Component component = miniMessage.deserialize(message);
-+        return component.toString();  // You might need to adjust this line depending on how you want to use the translated message // 버킷 챗컬러-어드벤처 미
-니메시지 API 다중 사용 // Bukkit API ChatColor-Adventure API Minimessage Multi-Using // NogyangSpigot
++        return component.toString();  // You might need to adjust this line depending on how you want to use the translated message // 버킷 챗컬러-어드벤처 미니메시지 API 다중 사용 // Bukkit API ChatColor-Adventure API Minimessage Multi-Using // NogyangSpigot
 +    }
 +}
 +
