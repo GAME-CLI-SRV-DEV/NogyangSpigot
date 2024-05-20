@@ -9,7 +9,7 @@ plugins {
     id("com.github.johnrengelman.shadow") version "8.1.1" apply false
 
     // In general, keep this version in sync with upstream. Sometimes a newer version than upstream might work, but an older version is extremely likely to break.
-    id("io.papermc.paperweight.patcher") version "1.6.2"
+    id("io.papermc.paperweight.patcher") version "1.7.1"
 }
 
 val paperMavenPublicUrl = "https://repo.papermc.io/repository/maven-public/"
@@ -83,14 +83,7 @@ paperweight {
                     upstreamDir = paperDir.dir("Paper-API")
                     patchDir = layout.projectDirectory.dir("patches/api")
                     outputDir = layout.projectDirectory.dir("NogyangSpigot-api")
-                }            
-
-                register("MojangApi") {
-                    isBareDirectory = true
-                    upstreamDir = paperDir.dir("Paper-MojangAPI")
-                    patchDir = layout.projectDirectory.dir("patches/mojangApi")
-                    outputDir = layout.projectDirectory.dir("NogyangSpigot-MojangAPI")
-                }
+                }           
 
                 register("generatedApi") {
                     isBareDirectory = true
@@ -115,40 +108,41 @@ paperweight {
 // Everything below here is optional if you don't care about publishing API or dev bundles to your repository
 //
 
-tasks.generateDevelopmentBundle {
-    apiCoordinates = "kr.ms.nogyang.nogyangspigot:NogyangSpigot-api"
-    mojangApiCoordinates = "kr.ms.nogyang.nogyangspigot:NogyangSpigot-mojangapi"
-    libraryRepositories = listOf(
-        "https://repo.maven.apache.org/maven2/",
-        paperMavenPublicUrl,
-        // "https://my.repo/", // This should be a repo hosting your API (in this example, 'com.example.paperfork:forktest-api')
-    )
-}
+// tasks.generateDevelopmentBundle {
+//    apiCoordinates = "kr.ms.nogyang.nogyangspigot:NogyangSpigot-api"
+//    mojangApiCoordinates = "kr.ms.nogyang.nogyangspigot:NogyangSpigot-mojangapi"
+//    libraryRepositories = listOf(
+//        "https://repo.maven.apache.org/maven2/",
+//        paperMavenPublicUrl,
+//        // "https://my.repo/", // This should be a repo hosting your API (in this example, 'com.example.paperfork:forktest-api')
+//    )
+// }
+//
+// allprojects {
+//    // Publishing API:
+//    // ./gradlew :ForkTest-API:publish[ToMavenLocal]
+//    publishing {
+//        repositories {
+//            maven {
+//                name = "myRepoSnapshots"
+//                url = uri("https://my.repo/")
+//                // See Gradle docs for how to provide credentials to PasswordCredentials
+//                // https://docs.gradle.org/current/samples/sample_publishing_credentials.html
+//                credentials(PasswordCredentials::class)
+//            }
+//        }
+//    }
+//}
 
-allprojects {
-    // Publishing API:
-    // ./gradlew :ForkTest-API:publish[ToMavenLocal]
-    publishing {
-        repositories {
-            maven {
-                name = "myRepoSnapshots"
-                url = uri("https://my.repo/")
-                // See Gradle docs for how to provide credentials to PasswordCredentials
-                // https://docs.gradle.org/current/samples/sample_publishing_credentials.html
-                credentials(PasswordCredentials::class)
-            }
-        }
-    }
-}
-
-publishing {
+// publishing {
     // Publishing dev bundle:
     // ./gradlew publishDevBundlePublicationTo(MavenLocal|MyRepoSnapshotsRepository) -PpublishDevBundle
-    if (project.hasProperty("publishDevBundle")) {
-        publications.create<MavenPublication>("devBundle") {
-            artifact(tasks.generateDevelopmentBundle) {
-                artifactId = "dev-bundle"
-            }
-        }
-    }
-}
+   // if (project.hasProperty("publishDevBundle")) {
+        // publications.create<MavenPublication>("devBundle") {
+        //    artifact(tasks.generateDevelopmentBundle) {
+      //          artifactId = "dev-bundle"
+    //        }
+  //      }
+//    }
+// }
+//

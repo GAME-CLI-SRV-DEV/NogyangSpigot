@@ -1,0 +1,203 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: Outfit8TSB <sunnybunnies09@naver.com>
+Date: Tue, 23 Apr 2024 08:58:00 +0900
+Subject: [PATCH] HotFix Build Changes and Geysers
+
+diff --git a/src/main/java/io/papermc/paper/ServerBuildInfoImpl.java b/src/main/java/io/papermc/paper/ServerBuildInfoImpl.java
+index f1505a46e..1aa3b94ba 100644
+--- a/src/main/java/io/papermc/paper/ServerBuildInfoImpl.java
++++ b/src/main/java/io/papermc/paper/ServerBuildInfoImpl.java
+@@ -30,7 +30,7 @@ public record ServerBuildInfoImpl(
+     private static final String ATTRIBUTE_GIT_BRANCH = "Git-Branch";
+     private static final String ATTRIBUTE_GIT_COMMIT = "Git-Commit";
+
+-    private static final String BRAND_PAPER_NAME = "NogyangSpigot";
++    private static final String BRAND_NY_NAME = "NogyangSpigot";
+
+     private static final String BUILD_DEV = "DEV";
+
+@@ -44,7 +44,7 @@ public record ServerBuildInfoImpl(
+                 .map(Key::key)
+                 .orElse(BRAND_PAPER_ID),
+             getManifestAttribute(manifest, ATTRIBUTE_BRAND_NAME)
+-                .orElse(BRAND_PAPER_NAME),
++                .orElse(BRAND_NY_NAME),
+             SharedConstants.getCurrentVersion().getId(),
+             SharedConstants.getCurrentVersion().getName(),
+             getManifestAttribute(manifest, ATTRIBUTE_BUILD_NUMBER)
+diff --git a/src/main/java/kr/ms/nogyang/bedrock/BedrockStart.java b/src/main/java/kr/ms/nogyang/bedrock/BedrockStart.java
+new file mode 100644
+index 000000000..98b66baed
+--- /dev/null
++++ b/src/main/java/kr/ms/nogyang/bedrock/BedrockStart.java
+@@ -0,0 +1,44 @@
++package kr.ms.nogyang.bedrock;
++
++import kr.ms.nogyang.lang.TranslationManager;
++import org.bukkit.plugin.Plugin;
++import org.bukkit.plugin.PluginManager;
++import org.bukkit.ChatColor;
++import org.bukkit.Bukkit;
++import net.kyori.adventure.text.format.NamedTextColor;
++import org.geysermc.floodgate.api.FloodgateApi;
++import java.util.logging.Logger;
++import java.util.logging.Level;
++
++//import cn.nukkit.*;
++public class BedrockStart {
++    //public final static String DATA_PATH = System.getProperty("user.dir") + "/";
++    //public final static String PLUGIN_PATH = DATA_PATH + "NukkitPlugins"; // 향후 Nukkit 서버 플러그인 지원을 위해 //가 제거될 예정.
++    public static void Geyser() {
++        PluginManager pluginManager = Bukkit.getPluginManager();
++        Logger logger = Bukkit.getLogger();
++
++        Plugin floodgatePlugin = pluginManager.getPlugin("Floodgate");
++        Plugin geyserPlugin = pluginManager.getPlugin("Geyser-Spigot");
++
++        if (floodgatePlugin != null && floodgatePlugin.isEnabled()) {
++            logger.log(Level.INFO, NamedTextColor.AQUA + "INFO" + TranslationManager.translate("nogyang.bedrock.floodgate.loaded.geyser.wait"));
++        } else {
++            logger.log(Level.INFO, NamedTextColor.RED + "ERROR" + TranslationManager.translate("nogyang.bedrock.floodgate.notloaded.bedrock.fail"));
++            BedrockStart.main();
++        }
++
++        if (geyserPlugin != null && geyserPlugin.isEnabled()) {
++            logger.log(Level.INFO, ChatColor.AQUA + "Bedrock Edition" + NamedTextColor.AQUA + "INFO" + TranslationManager.translate("nogyang.bedrock.geyser.loaded.bedrock.load"));
++        } else {
++            logger.log(Level.INFO, ChatColor.AQUA + "Bedrock Edition" + NamedTextColor.RED + "ERROR" + TranslationManager.translate("nogyang.bedrock.geyser.notloaded.bedrock.fail"));
++        }
++    }
++    public static void main() {
++        Logger logger = Bukkit.getLogger();
++        logger.log(Level.INFO, ChatColor.AQUA + "Bedrock Edition" + NamedTextColor.AQUA + "INFO" + TranslationManager.translate("nogyang.bedrock.loaded"));
++        logger.log(Level.INFO, ChatColor.AQUA + "Bedrock Edition" + NamedTextColor.AQUA + "INFO" + TranslationManager.translate("nogyang.bedrock.help"));
++        logger.log(Level.INFO, ChatColor.AQUA + "Bedrock Edition" + NamedTextColor.YELLOW + "WARN" + TranslationManager.translate("nogyang.bedrock.warning"));
++    }
++
++}
+diff --git a/src/main/java/kr/ms/nogyang/config/config.java b/src/main/java/kr/ms/nogyang/config/config.java
+new file mode 100644
+index 000000000..b98594afd
+--- /dev/null
++++ b/src/main/java/kr/ms/nogyang/config/config.java
+@@ -0,0 +1,52 @@
++package kr.ms.nogyang.config;
++
++import org.bukkit.configuration.file.YamlConfiguration;
++
++import java.io.File;
++import java.io.IOException;
++
++public class config {
++
++    private File file;
++    private YamlConfiguration config;
++
++    public void setup() {
++        file = new File("Nogyang.yml");
++
++        if (!file.exists()) {
++            try {
++                file.createNewFile();
++            } catch (IOException e) {
++                // Handle any IO exception here
++            }
++        }
++
++        config = YamlConfiguration.loadConfiguration(file);
++        // Add your default configuration values
++        config.addDefault("Language", "en-US");
++        config.addDefault("Geyser.Bedrock.PanicAtAntiCheat", true);
++        config.addDefault("Geyser.Bedrock.FakeAuth", true);
++        config.addDefault("Geyser.Bedrock.FakeAuthPort", 25569);
++        config.addDefault("ViaVersion.ViaProxy", 25549); // Use a ViaProxy Command to go to random server. type transfer viaproxy, and it will send you to your viaproxy hosted address
++        config.addDefault("ViaVersion.ViaaaS", 25547); // if you use this: you will automatically teleport to config setting of this. this is used for storing the Transfer Target Address as a value of this and syncing with Bungee.
++
++        // Save the configuration
++        saveConfig();
++    }
++
++    public YamlConfiguration getConfig() {
++        return config;
++    }
++
++    public void saveConfig() {
++        try {
++            config.save(file);
++        } catch (IOException e) {
++            // Handle any IO exception here
++        }
++    }
++
++    public void reloadConfig() {
++        config = YamlConfiguration.loadConfiguration(file);
++    }
++}
+diff --git a/src/main/java/kr/ms/nogyang/forceauth/NogyangAuthenticator.java b/src/main/java/kr/ms/nogyang/forceauth/NogyangAuthenticator.java
+new file mode 100644
+index 000000000..730c4deca
+--- /dev/null
++++ b/src/main/java/kr/ms/nogyang/forceauth/NogyangAuthenticator.java
+@@ -0,0 +1,5 @@
++package kr.ms.nogyang.forceauth;
++
++public class NogyangAuthenticator {
++
++}
+diff --git a/src/main/java/kr/ms/nogyang/lang/TranslationManager.java b/src/main/java/kr/ms/nogyang/lang/TranslationManager.java
+new file mode 100644
+index 000000000..b7ab72c97
+--- /dev/null
++++ b/src/main/java/kr/ms/nogyang/lang/TranslationManager.java
+@@ -0,0 +1,51 @@
++package kr.ms.nogyang.lang;
++import java.text.MessageFormat;
++import java.util.*;
++import net.kyori.adventure.text.serializer.legacy.LegacyComponentSerializer;
++// import org.bukkit.ChatColor; bye bye chat colorip
++import net.kyori.adventure.text.minimessage.MiniMessage;
++import net.kyori.adventure.text.Component;
++
++public class TranslationManager {
++    private final Locale locale;
++    private static ResourceBundle bundle;
++    private static final MiniMessage miniMessage = MiniMessage.builder().build();
++
++    public TranslationManager(String languageTag) {
++        this.locale = Locale.forLanguageTag(languageTag);
++        bundle = ResourceBundle.getBundle("translations", locale);
++    }
++
++    public static String translate(String key, Object... params) {
++        if (bundle.containsKey(key)) {
++            String format = bundle.getString(key);
++            String message = MessageFormat.format(format, params);
++            if (key.startsWith("cc_")) { // Adventure API usage // Bukkit API ChatColor-Adventure API Minimessage Multi-Using // NogyangSpigot
++                return translateColorCodesWithChatColor(message); // Bukkit ChatColor-Adventure API Minimessage Multi-Using // NogyangSpigot
++            } else if (key.startsWith("mm_")) { // Adventure API usage // Bukkit API ChatColor-Adventure API Minimessage Multi-Using // NogyangSpigot
++                return translateColorCodesWithMiniMessage(message); // Bukkit ChatColor-Adventure API Minimessage Multi-Using // NogyangSpigot
++            } else {
++                return message;
++            }
++        } else {
++            // Key not found in translations
++            return key;
++        }
++    }
++
++
++    private static String translateColorCodesWithChatColor(String message) {
++        Component component = LegacyComponentSerializer.legacy('&').deserialize(message);
++        return LegacyComponentSerializer.legacy('&').serialize(component);
++        // return ChatColor.translateAlternateColorCodes('&', message); // 버킷 챗컬러-어드벤처 미니메시지 API 다중 사용 // Bukkit API ChatColor-Adventure API Minimessage Multi-Using // NogyangSpigot
++
++    }
++
++    private static String translateColorCodesWithMiniMessage(String message) {
++        Component component = miniMessage.deserialize(message);
++        return component.toString();  // You might need to adjust this line depending on how you want to use the translated message // 버킷 챗컬러-어드벤처 미니메시지 API 다중 사용 // Bukkit API ChatColor-Adventure API Minimessage Multi-Using // NogyangSpigot
++    }
++}
++
++
++
