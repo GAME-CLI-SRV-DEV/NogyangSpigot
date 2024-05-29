@@ -134,8 +134,8 @@ paperweight {
 }
 
  publishing {
-     Publishing dev bundle:
-     ./gradlew publishDevBundlePublicationTo(MavenLocal|MyRepoSnapshotsRepository) -PpublishDevBundle
+     // Publishing dev bundle:
+     // ./gradlew publishDevBundlePublicationTo(MavenLocal|MyRepoSnapshotsRepository) -PpublishDevBundle
     if (project.hasProperty("publishDevBundle")) {
          publications.create<MavenPublication>("devBundle") {
             artifact(tasks.generateDevelopmentBundle) {
