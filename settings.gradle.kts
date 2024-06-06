@@ -11,4 +11,4 @@ plugins {
 
 rootProject.name = "NogyangSpigot"
 
-include("NogyangSpigot-api", "NogyangSpigot-server", "paper-api-generator")
+include("NogyangSpigot-api", "NogyangSpigot-server", "paper-api-generator", "NogyangSpigot-moddedapi", "NogyangSpigot-moddedserver")
