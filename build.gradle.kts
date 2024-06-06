@@ -83,17 +83,7 @@ paperweight {
                     upstreamDir = paperDir.dir("Paper-API")
                     patchDir = layout.projectDirectory.dir("patches/api")
                     outputDir = layout.projectDirectory.dir("NogyangSpigot-api")
-                }           
-                register("forgeserver") {
-                    upstreamDir = layout.projectDirectory.dir("NogyangSpigot-Server")
-                    patchDir = layout.projectDirectory.dir("patches/moddedapi/dualforge")
-                    outputDir = layout.projectDirectory.dir("NogyangSpigot-moddedserver-dualforge")
-                }      
-                register("fabricserver") {
-                    upstreamDir = layout.projectDirectory.dir("NogyangSpigot-Server")
-                    patchDir = layout.projectDirectory.dir("patches/moddedapi/dualforge")
-                    outputDir = layout.projectDirectory.dir("NogyangSpigot-moddedserver-FabQuilt")
-                }   
+                }              
                 register("generatedApi") {
                     isBareDirectory = true
                     upstreamDir = paperDir.dir("paper-api-generator/generated")
