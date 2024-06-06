@@ -90,7 +90,7 @@ paperweight {
                     outputDir = layout.projectDirectory.dir("NogyangSpigot-moddedapi")
                 }    
                 register("moddedserver") {
-                    upstreamDir = ("NogyangSpigot-Server")
+                    upstreamDir = layout.projectDirectory.dir("NogyangSpigot-Server")
                     patchDir = layout.projectDirectory.dir("patches/mod")
                     outputDir = layout.projectDirectory.dir("NogyangSpigot-moddedserver")
                 }        
