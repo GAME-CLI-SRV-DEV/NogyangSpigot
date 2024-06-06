@@ -84,7 +84,16 @@ paperweight {
                     patchDir = layout.projectDirectory.dir("patches/api")
                     outputDir = layout.projectDirectory.dir("NogyangSpigot-api")
                 }           
-
+                register("moddedapi") {
+                    upstreamDir = layout.projectDirectory.dir("NogyangSpigot-API")
+                    patchDir = layout.projectDirectory.dir("patches/mod")
+                    outputDir = layout.projectDirectory.dir("NogyangSpigot-moddedapi")
+                }    
+                register("moddedserver") {
+                    upstreamDir = ("NogyangSpigot-Server")
+                    patchDir = layout.projectDirectory.dir("patches/mod")
+                    outputDir = layout.projectDirectory.dir("NogyangSpigot-moddedserver")
+                }        
                 register("generatedApi") {
                     isBareDirectory = true
                     upstreamDir = paperDir.dir("paper-api-generator/generated")
