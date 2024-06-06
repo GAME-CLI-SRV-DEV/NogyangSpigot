@@ -110,8 +110,6 @@ paperweight {
     apiCoordinates = "kr.ms.nogyang.nogyangspigot:NogyangSpigot-api"
     libraryRepositories = listOf(
         "https://repo.maven.apache.org/maven2/",
-        paperMavenPublicUrl,
-        // "https://my.repo/", // This should be a repo hosting your API (in this example, 'com.example.paperfork:forktest-api')
     )
  }
 
