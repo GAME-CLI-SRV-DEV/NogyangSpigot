@@ -4,7 +4,7 @@ Date: Tue, 23 Apr 2024 08:58:00 +0900
 Subject: [PATCH] HotFix Fix Errors
 
 diff --git a/src/main/java/net/minecraft/world/damagesource/DamageSource.java b/src/main/java/net/minecraft/world/damagesource/DamageSource.java
-index 359a2f049..015330715 100644
+index dd9638bdb..015330715 100644
 --- a/src/main/java/net/minecraft/world/damagesource/DamageSource.java
 +++ b/src/main/java/net/minecraft/world/damagesource/DamageSource.java
 @@ -182,7 +182,7 @@ public class DamageSource {
@@ -26,7 +26,7 @@ index 359a2f049..015330715 100644
 
          return flag;
 diff --git a/src/main/java/net/minecraft/world/entity/LivingEntity.java b/src/main/java/net/minecraft/world/entity/LivingEntity.java
-index 6e043457a..5b7d73b83 100644
+index ce01fe82d..5b7d73b83 100644
 --- a/src/main/java/net/minecraft/world/entity/LivingEntity.java
 +++ b/src/main/java/net/minecraft/world/entity/LivingEntity.java
 @@ -3232,9 +3232,10 @@ public abstract class LivingEntity extends Entity implements Attackable {
@@ -60,7 +60,7 @@ index 6e043457a..5b7d73b83 100644
 
          return b0;
 diff --git a/src/main/java/net/minecraft/world/entity/Mob.java b/src/main/java/net/minecraft/world/entity/Mob.java
-index e89f9c3e8..e22388a32 100644
+index 8b612b772..e22388a32 100644
 --- a/src/main/java/net/minecraft/world/entity/Mob.java
 +++ b/src/main/java/net/minecraft/world/entity/Mob.java
 @@ -1145,7 +1145,7 @@ public abstract class Mob extends LivingEntity implements EquipmentUser, Targeti
@@ -84,7 +84,7 @@ index e89f9c3e8..e22388a32 100644
 @@ -1228,7 +1228,7 @@ public abstract class Mob extends LivingEntity implements EquipmentUser, Targeti
      }
 
-     protected float getEquipmentDropChance(EquipmentSlot slot) {
+     public float getEquipmentDropChance(EquipmentSlot slot) {
 -        float f;
 +        float f =0.0f;
 
@@ -95,10 +95,12 @@ index e89f9c3e8..e22388a32 100644
                  break;
              default:
 -                throw new MatchException((String) null, (Throwable) null);
-+                System.out.println("we had to sell this due to budget cuts");
++                       System.out.println("we had to sell this due to budget cuts");
          }
 
          return f;
+
+
 diff --git a/src/main/java/net/minecraft/world/entity/animal/Sheep.java b/src/main/java/net/minecraft/world/entity/animal/Sheep.java
 index 3ce86f952..4e56538f2 100644
 --- a/src/main/java/net/minecraft/world/entity/animal/Sheep.java
@@ -122,7 +124,7 @@ index 3ce86f952..4e56538f2 100644
 
              return resourcekey;
 diff --git a/src/main/java/net/minecraft/world/entity/projectile/AbstractArrow.java b/src/main/java/net/minecraft/world/entity/projectile/AbstractArrow.java
-index 31b8a8bf7..0b4465950 100644
+index 5bc4ba7c0..0b4465950 100644
 --- a/src/main/java/net/minecraft/world/entity/projectile/AbstractArrow.java
 +++ b/src/main/java/net/minecraft/world/entity/projectile/AbstractArrow.java
 @@ -609,7 +609,7 @@ public abstract class AbstractArrow extends Projectile {
@@ -166,7 +168,7 @@ index a31326e24..0bf13ad5f 100644
          return recipe;
          // CraftBukkit end
 diff --git a/src/main/java/net/minecraft/world/level/Level.java b/src/main/java/net/minecraft/world/level/Level.java
-index b4ef3ad2c..ba52aa588 100644
+index 14281a4e7..ba52aa588 100644
 --- a/src/main/java/net/minecraft/world/level/Level.java
 +++ b/src/main/java/net/minecraft/world/level/Level.java
 @@ -1369,7 +1369,7 @@ public abstract class Level implements LevelAccessor, AutoCloseable {
