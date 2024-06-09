@@ -1433,40 +1433,6 @@ index 300929a40..66307d6ce 100644
                          this.setChainBroken();
                          throw new SignedMessageChain.DecodeException(SignedMessageChain.DecodeException.OUT_OF_ORDER_CHAT, org.bukkit.event.player.PlayerKickEvent.Cause.OUT_OF_ORDER_CHAT); // Paper - kick event causes
                      } else {
-diff --git a/src/main/java/net/minecraft/server/MinecraftServer.java b/src/main/java/net/minecraft/server/MinecraftServer.java
-index 2dc07e5ef249636e85ad9c78e3729e9e066a8fe8..b9e0a32f5829ca15f949effcafcbe2a975f6f690 100644
---- a/src/main/java/net/minecraft/server/MinecraftServer.java
-+++ b/src/main/java/net/minecraft/server/MinecraftServer.java
-@@ -312,6 +312,7 @@ public abstract class MinecraftServer extends ReentrantBlockableEventLoop<TickTa
-     public volatile Thread shutdownThread; // Paper
-     public volatile boolean abnormalExit = false; // Paper
-     public static final long SERVER_INIT = System.nanoTime(); // Paper - Lag compensation
-+    public gg.pufferfish.pufferfish.util.AsyncExecutor mobSpawnExecutor = new gg.pufferfish.pufferfish.util.AsyncExecutor("MobSpawning"); // Pufferfish - optimize mob spawning
- 
-     public static <S extends MinecraftServer> S spin(Function<Thread, S> serverFactory) {
-         AtomicReference<S> atomicreference = new AtomicReference();
-@@ -1229,6 +1230,12 @@ public abstract class MinecraftServer extends ReentrantBlockableEventLoop<TickTa
-                 this.profiler.popPush("nextTickWait");
-                 this.mayHaveDelayedTasks = true;
-                 this.delayedTasksMaxNextTickTimeNanos = Math.max(Util.getNanos() + i, this.nextTickTimeNanos);
-+                // Pufferfish start - tps catchup
-+                if (!gg.pufferfish.pufferfish.PufferfishConfig.tpsCatchup) {
-+                    this.nextTickTimeNanos = currentTime + i;
-+                    this.delayedTasksMaxNextTickTimeNanos = nextTickTimeNanos;
-+                }
-+                // Pufferfish end
-                 this.waitUntilNextTick();
-                 if (flag) {
-                     this.tickRateManager.endTickWork();
-     public SystemReport fillSystemReport(SystemReport details) {
-@@ -2452,6 +2459,7 @@ public abstract class MinecraftServer extends ReentrantBlockableEventLoop<TickTa
-     }
- 
-     public ProfilerFiller getProfiler() {
-+        if (gg.pufferfish.pufferfish.PufferfishConfig.disableMethodProfiler) return net.minecraft.util.profiling.InactiveProfiler.INSTANCE;
-         return this.profiler;
-     }
- 
 diff --git a/src/main/java/net/minecraft/server/dedicated/DedicatedServer.java b/src/main/java/net/minecraft/server/dedicated/DedicatedServer.java
 index 68d268b6fff126e8645b6deec3fb549ea2286b77..435b129c433704c24828d8fb57e14333c9423207 100644
 --- a/src/main/java/net/minecraft/server/dedicated/DedicatedServer.java
