@@ -2130,30 +2130,6 @@ index 0000000000000000000000000000000000000000..facd55463d44cb7e3d2ca6892982f549
 +		return backingMap.size();
 +	}
 +}
-diff --git a/src/main/java/io/papermc/paper/ServerBuildInfoImpl.java b/src/main/java/io/papermc/paper/ServerBuildInfoImpl.java
-index 790bad0494454ca12ee152e3de6da3da634d9b20..12d52f6677a1c19084a8d5c7d56850efbe203877 100644
---- a/src/main/java/io/papermc/paper/ServerBuildInfoImpl.java
-+++ b/src/main/java/io/papermc/paper/ServerBuildInfoImpl.java
-@@ -31,6 +31,7 @@ public record ServerBuildInfoImpl(
-     private static final String ATTRIBUTE_GIT_COMMIT = "Git-Commit";
- 
-     private static final String BRAND_PAPER_NAME = "Paper";
-+    private static final String BRAND_PUFFERFISH_NAME = "Pufferfish"; // Pufferfish
- 
-     private static final String BUILD_DEV = "DEV";
- 
-@@ -42,9 +43,9 @@ public record ServerBuildInfoImpl(
-         this(
-             getManifestAttribute(manifest, ATTRIBUTE_BRAND_ID)
-                 .map(Key::key)
--                .orElse(BRAND_PAPER_ID),
-+                .orElse(BRAND_PUFFERFISH_ID), // Pufferfish
-             getManifestAttribute(manifest, ATTRIBUTE_BRAND_NAME)
--                .orElse(BRAND_PAPER_NAME),
-+                .orElse(BRAND_PUFFERFISH_NAME), // Pufferfish
-             SharedConstants.getCurrentVersion().getId(),
-             SharedConstants.getCurrentVersion().getName(),
-             getManifestAttribute(manifest, ATTRIBUTE_BUILD_NUMBER)
 diff --git a/src/main/java/io/papermc/paper/configuration/GlobalConfiguration.java b/src/main/java/io/papermc/paper/configuration/GlobalConfiguration.java
 index 2874bc3001c4e7d9191e47ba512c5a68369c21f1..32035e37b39ba42232fea948166e7c1d4d06190c 100644
 --- a/src/main/java/io/papermc/paper/configuration/GlobalConfiguration.java
