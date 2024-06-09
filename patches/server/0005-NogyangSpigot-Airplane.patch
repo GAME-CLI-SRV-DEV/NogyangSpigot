@@ -1458,14 +1458,6 @@ index 2dc07e5ef249636e85ad9c78e3729e9e066a8fe8..b9e0a32f5829ca15f949effcafcbe2a9
                  this.waitUntilNextTick();
                  if (flag) {
                      this.tickRateManager.endTickWork();
-@@ -1865,7 +1872,7 @@ public abstract class MinecraftServer extends ReentrantBlockableEventLoop<TickTa
- 
-     @DontObfuscate
-     public String getServerModName() {
--        return "Paper"; // Paper
-+        return "Pufferfish"; // Pufferfish > // Paper
-     }
- 
      public SystemReport fillSystemReport(SystemReport details) {
 @@ -2452,6 +2459,7 @@ public abstract class MinecraftServer extends ReentrantBlockableEventLoop<TickTa
      }
