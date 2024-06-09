@@ -42,7 +42,7 @@ index 4b002e8b75d117b726b0de274a76d3596fce015b..692c962193cf9fcc6801fc93f3220bdc
              // Only start Metrics, if it's enabled in the config
              if (config.getBoolean("enabled", true)) {
 -                Metrics metrics = new Metrics("Paper", serverUUID, logFailedRequests, Bukkit.getLogger());
-+                Metrics metrics = new Metrics("Pufferfish", serverUUID, logFailedRequests, Bukkit.getLogger()); // Pufferfish
++                Metrics metrics = new Metrics("NogyangSpigot-Pufferfish", serverUUID, logFailedRequests, Bukkit.getLogger()); // Pufferfish
  
                  metrics.addCustomChart(new Metrics.SimplePie("minecraft_version", () -> {
                      String minecraftVersion = Bukkit.getVersion();
