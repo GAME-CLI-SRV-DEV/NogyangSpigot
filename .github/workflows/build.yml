@@ -30,10 +30,12 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: NogyangSpigotzip
-          path: /.
-      - name: Upload classes-server
+          path: NogyangSpigot-API
+      - name: Upload 
         uses: actions/upload-artifact@v4
-      
+        with:
+          name: NogyangSpigotzip2
+          path: NogyangSpigot-Server
       - name: Build NogyangSpigot Jar(Main Jar)
         run: ./gradlew createreobfpaperclipjar
       - name: Build NogyangSpigot Jar(Dev Jar)
