@@ -5,6 +5,12 @@ Fun Fact: This Server Also Counted as Minecraft: Java Edition X Minecraft: Bedro
 
 ("Starting Minecraft: Bedrock Edition + Java Edition Crossplay Server version 1.20.6 + 1.20.80 Java: 1.20.5/6, Bedrock Edition: 1.20.80") 
 
+# 공지
+NogyangSpigot이 공식적으로 Airplane Patch를 적용하였습니다.
+이후 버전에서는 Pufferfish-Airplane Patch, Tuinity API가 적용된 녹양스피곳을 기반으로 Pufferfish 포트를 만드시는 경우 Pufferfish-Server-Changes.patch를 적용하지 않아도 됩니다.
+NogyangSpigot has applied Airplane Patch.
+from future versions, if you are making Pufferfish Ported Forks with NogyangSpigot,
+You don't have to add Pufferfish-Server-Changes.patch
 # 빌드 일람
 (i) 액션에서 검출
 (X) 빌드 실패
