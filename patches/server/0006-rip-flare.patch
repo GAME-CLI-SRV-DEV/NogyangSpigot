@@ -524,7 +524,6 @@ index d426575c6..000000000
 -    @Override
 -    public void handleNotification(Notification notification, Object o) {
 -        if (notification.getType().equals(GarbageCollectionNotificationInfo.GARBAGE_COLLECTION_NOTIFICATION)) {
-:
 -            NotificationEmitter notificationEmitter = (NotificationEmitter) gar
 -            notificationEmitter.addNotificationListener(this, null, null);
 -        }
