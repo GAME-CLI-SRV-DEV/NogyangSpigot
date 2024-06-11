@@ -11,6 +11,7 @@ NogyangSpigot이 공식적으로 Airplane Patch를 적용하였습니다.
 NogyangSpigot has applied Airplane Patch.
 from future versions, if you are making Pufferfish Ported Forks with NogyangSpigot,
 You don't have to add Pufferfish-Server-Changes.patch
+(일부 클래스에서 Flare가 제거되었으며 이후 spark가 이 자리를 꿰찰 예정입니다. 잠시 기다려 주십시오.)
 # 빌드 일람
 (i) 액션에서 검출
 (X) 빌드 실패
