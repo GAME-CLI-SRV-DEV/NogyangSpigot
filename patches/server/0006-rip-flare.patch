@@ -524,31 +524,12 @@ index d426575c6..000000000
 -    @Override
 -    public void handleNotification(Notification notification, Object o) {
 -        if (notification.getType().equals(GarbageCollectionNotificationInfo.GARBAGE_COLLECTION_NOTIFICATION)) {
--            NotificationEmitter notificationEmitter = (NotificationEmitter) gar
--            notificationEmitter.addNotificationListener(this, null, null);
--        }
--    }
--
--    @Override
--    public void stop(Flare flare) {
--        for (GarbageCollectorMXBean garbageCollectorBean : ManagementFactory.ge
--            NotificationEmitter notificationEmitter = (NotificationEmitter) gar
--            try {
--                notificationEmitter.removeNotificationListener(this);
--            } catch (ListenerNotFoundException e) {
--            }
--        }
--    }
--
--    @Override
--    public void handleNotification(Notification notification, Object o) {
--        if (notification.getType().equals(GarbageCollectionNotificationInfo.GAR
--            GarbageCollectionNotificationInfo gcInfo = GarbageCollectionNotific
--            reportEvent(new LiveEvent(fromString(gcInfo.getGcAction()), System.
+-            GarbageCollectionNotificationInfo gcInfo = GarbageCollectionNotificationInfo.from((CompositeData) notification.getUserData());
+-            reportEvent(new LiveEvent(fromString(gcInfo.getGcAction()), System.currentTimeMillis(), (int) gcInfo.getGcInfo().getDuration(), ImmutableMap.of()));
 -        }
 -    }
 -}
-diff --git a/src/main/java/gg/pufferfish/pufferfish/flare/collectors/StatCollect
+diff --git a/src/main/java/gg/pufferfish/pufferfish/flare/collectors/StatCollector.java b/src/main/java/gg/pufferfish/pufferfish/flare/collectors/StatCollector.java
 deleted file mode 100644
 index a22c6dbae..000000000
 --- a/src/main/java/gg/pufferfish/pufferfish/flare/collectors/StatCollector.java
@@ -569,10 +550,10 @@ index a22c6dbae..000000000
 -
 -public class StatCollector extends LiveCollector {
 -
--    private static final CollectorData CPU = new CollectorData("builtin:stat:cp
--    private static final CollectorData CPU_PROCESS = new CollectorData("builtin
--    private static final CollectorData MEMORY = new CollectorData("builtin:stat
--    private static final CollectorData MEMORY_TOTAL = new CollectorData("builti
+-    private static final CollectorData CPU = new CollectorData("builtin:stat:cpu", "CPU Load", "The total amount of CPU usage across all cores.", DataFormatter.PERCENT, GraphCategory.SYSTEM);
+-    private static final CollectorData CPU_PROCESS = new CollectorData("builtin:stat:cpu_process", "Process CPU", "The amount of CPU being used by this process.", DataFormatter.PERCENT, GraphCategory.SYSTEM);
+-    private static final CollectorData MEMORY = new CollectorData("builtin:stat:memory_used", "Memory", "The amount of memory being used currently.", DataFormatter.BYTES, GraphCategory.SYSTEM);
+-    private static final CollectorData MEMORY_TOTAL = new CollectorData("builtin:stat:memory_total", "Memory Total", "The total amount of memory allocated.", DataFormatter.BYTES, GraphCategory.SYSTEM);
 -
 -    private final OperatingSystemMXBean bean;
 -    private final CentralProcessor processor;
@@ -581,7 +562,7 @@ index a22c6dbae..000000000
 -        super(CPU, CPU_PROCESS, MEMORY, MEMORY_TOTAL);
 -        this.interval = Duration.ofSeconds(5);
 -
--        this.bean = (OperatingSystemMXBean) ManagementFactory.getOperatingSyste
+-        this.bean = (OperatingSystemMXBean) ManagementFactory.getOperatingSystemMXBean();
 -        this.processor = new SystemInfo().getHardware().getProcessor();
 -    }
 -
@@ -589,13 +570,13 @@ index a22c6dbae..000000000
 -    public void run() {
 -        Runtime runtime = Runtime.getRuntime();
 -
--        this.report(CPU, this.processor.getSystemLoadAverage(1)[0] / 100); // p
+-        this.report(CPU, this.processor.getSystemLoadAverage(1)[0] / 100); // percentage
 -        this.report(CPU_PROCESS, this.bean.getProcessCpuLoad());
 -        this.report(MEMORY, runtime.totalMemory() - runtime.freeMemory());
 -        this.report(MEMORY_TOTAL, runtime.totalMemory());
 -    }
 -}
-diff --git a/src/main/java/gg/pufferfish/pufferfish/flare/collectors/TPSCollecto
+diff --git a/src/main/java/gg/pufferfish/pufferfish/flare/collectors/TPSCollector.java b/src/main/java/gg/pufferfish/pufferfish/flare/collectors/TPSCollector.java
 deleted file mode 100644
 index 40447d00a..000000000
 --- a/src/main/java/gg/pufferfish/pufferfish/flare/collectors/TPSCollector.java
@@ -614,88 +595,11 @@ index 40447d00a..000000000
 -import java.util.Arrays;
 -
 -public class TPSCollector extends LiveCollector {
--    private static final CollectorData TPS = new CollectorData("airplane:tps",
--    private static final CollectorData MSPT = new CollectorData("airplane:mspt"
+-    private static final CollectorData TPS = new CollectorData("airplane:tps", "TPS", "Ticks per second, or how fast the server updates. For a smooth server this should be a constant 20TPS.", SuffixFormatter.of("TPS"), CustomCategories.MC_PERF);
+-    private static final CollectorData MSPT = new CollectorData("airplane:mspt", "MSPT", "Milliseconds per tick, which can show how well your server is performing. This value should always be under 50mspt.", SuffixFormatter.of("mspt"), CustomCategories.MC_PERF);
 -
 -    public TPSCollector() {
 -        super(TPS, MSPT);
--
--        this.interval = Duration.ofSeconds(5);
--    }
--
--    @Override
--    public void run() {
--
--        this.interval = Duration.ofSeconds(5);
--    }
--
--    @Override
--    public void run() {
--        long[] times = MinecraftServer.getServer().tickTimes5s.getTimes();
--        double mspt = ((double) Arrays.stream(times).sum() / (double) times.len
--
--        this.report(TPS, Math.min(20D, Math.round(Bukkit.getServer().getTPS()[0
--        this.report(MSPT, (double) Math.round(mspt * 100d) / 100d);
--    }
--}
-diff --git a/src/main/java/gg/pufferfish/pufferfish/flare/collectors/WorldCountC
-deleted file mode 100644
-index 029d840e2..000000000
---- a/src/main/java/gg/pufferfish/pufferfish/flare/collectors/WorldCountCollecto
-+++ /dev/null
-@@ -1,45 +0,0 @@
--package gg.pufferfish.pufferfish.flare.collectors;
--
--import co.technove.flare.live.CollectorData;
--import co.technove.flare.live.LiveCollector;
--import co.technove.flare.live.formatter.SuffixFormatter;
--import gg.pufferfish.pufferfish.flare.CustomCategories;
--import org.bukkit.Bukkit;
--import org.bukkit.World;
--
--import java.time.Duration;
--
--public class WorldCountCollector extends LiveCollector {
--
--    private static final CollectorData PLAYER_COUNT = new CollectorData("airpla
--    private static final CollectorData ENTITY_COUNT = new CollectorData("airpla
--    private static final CollectorData CHUNK_COUNT = new CollectorData("airplan
--    private static final CollectorData TILE_ENTITY_COUNT = new CollectorData("a_CHUNKS);
--
--    public WorldCountCollector() {
--        super(PLAYER_COUNT, ENTITY_COUNT, CHUNK_COUNT, TILE_ENTITY_COUNT);
--
--        this.interval = Duration.ofSeconds(5);
--    }
--
--    @Override
--    public void run() {
--        if (true) return; // This doesn't work, and it's not worth fixing at th
--        int entities = 0;
--        int chunkCount = 0;
--        int tileEntityCount = 0;
--
--        if (!Bukkit.isStopping()) {
--            for (World world : Bukkit.getWorlds()) {
--                world.getEntityCount();
--                chunkCount += world.getChunkCount();
--                tileEntityCount += world.getTileEntityCount();
--            }
--        }
--
--        this.report(PLAYER_COUNT, Bukkit.getOnlinePlayers().size());
--        this.report(ENTITY_COUNT, entities);
--        this.report(CHUNK_COUNT, chunkCount);
--        this.report(TILE_ENTITY_COUNT, tileEntityCount);
--    }
--}
-diff --git a/src/main/java/org/bukkit/craftbukkit/util/ServerShutdownThread.java
-index 3dff02fd9..e8e93538d 100644
---- a/src/main/java/org/bukkit/craftbukkit/util/ServerShutdownThread.java
-+++ b/src/main/java/org/bukkit/craftbukkit/util/ServerShutdownThread.java
-@@ -11,7 +11,6 @@ public class ServerShutdownThread extends Thread {
-
-:
 -
 -        this.interval = Duration.ofSeconds(5);
 -    }
