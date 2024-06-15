@@ -5,6 +5,80 @@ Fun Fact: This Server Also Counted as Minecraft: Java Edition X Minecraft: Bedro
 
 ("Starting Minecraft: Bedrock Edition + Java Edition Crossplay Server version 1.20.6 + 1.20.80 Java: 1.20.5/6, Bedrock Edition: 1.20.80") 
 
+# 구현 중인 API
+플러그인 API:
+
+Bukkit API, Spigot API, Paper API, Pufferfish API
+
+플러그인:
+
+PingAPI, Geyser API(GeyserMC를 플러그인 폴더애 삽입해야 작동)
+
+
+# 지원하는 로더
+누킷 플러그인, 레인보우 플러그인(예정), 버킷 플러그인, 스피곳 플러그인, 페이퍼 플러그인, 퍼퍼피쉬 플러그인, GeyserMC 확장(GeyserMC 필요), PingAPI 겸용 버킷 플러그인, 클라우드버스트 플러그인
+
+# Paper와의 차이점
+Paper와 달리 Bedrock을 지원함(GeyserMC 필요)
+다양한 번역으로 타 Paper Fork와 다르게 여러 언어로 서버 로그를 확인할 수 있음.
+예시:
+```
+starting org.bukkit.craftbukkit.main
+NogyangSpigot: NogyangSpigot 준비 중
+NogyangSpigot: NogyangSpigot 설정 로딩 중
+한국어(ko-KR)를 기본 언어로 선택하였습니다.
+NogyangSpigot: NogyangSpigot 설정 로딩 완료
+라이브러리를 불러오는 중입니다. 잠시 기다려 주십시오...
+[14:35:38 INFO]: 데이터 팩 bukkit이 발견되었습니다. 자동으로 불러오는 중입니다.
+[14:35:29 INFO]: 7개의 레시피 불러옴
+[14:35:32 INFO]: Minecraft: Java Edition 서버 버전 1.20.6 를 시작합니다
+[14:35:32 INFO]: 구성 설정 로드 됨!
+[14:35:32 INFO]: 이 서버는 Paper 버전 1.20.6-B@C (YYYY-MM-DDTHH:MM:SSZ) API 1.20.6-R0.1-SNAPSHOT로 구동되고 있습니다.
+[14:35:32 INFO]: 서버 핑 플레이어 샘플 숫자: 12
+[14:35:32 INFO]: 4개의 스레드를 Netty based IO에 사용합니다.
+[14:35:32 INFO]: 기본 게임 유형: SURVIVAL
+[14:35:32 INFO]: Generating keypair
+[14:35:32 INFO]: 마인크래프트 서버가 127.0.0.1/[::1]:25565에서 열립니다.
+[14:35:33 INFO]: 기본 채널 타입 사용 중입니다.
+[14:35:33 INFO]: Paper: Using Java 11 compression from Velocity.
+[14:35:33 INFO]: Paper: Using Java cipher from Velocity.
+[14:35:38 INFO]: [ViaVersion] ViaVersion v4.10.0을(를) 불러오는 중입니다.
+[14:35:38 INFO]: [ViaVersion] ViaVersion 4.1.1 is now loaded, injecting!
+[14:35:38 INFO]: [ViaVersion] Loading 1.12 -> 1.13 mappings...
+[14:35:38 INFO]: [ViaVersion] Loading 1.13 -> 1.13.2 mappings...
+[14:35:38 INFO]: [floodgate] floodgate v2.3.1-SNAPSHOT을(를) 불러오는 중입니다.
+[14:35:38 INFO]: [ViaVersion] Loading 1.14 -> 1.15 mappings...
+[14:35:38 INFO]: [ViaVersion] Loading 1.15 -> 1.16 mappings...
+[14:35:38 INFO]: [ViaVersion] Loading 1.16 -> 1.16.2 mappings...
+[14:35:39 INFO]: [ViaVersion] Loading block connection mappings ...
+[14:35:39 INFO]: [ViaVersion] Loading 1.13.2 -> 1.14 mappings...
+[14:35:39 INFO]: [ViaVersion] Loading 1.16.2 -> 1.17 mappings...
+[14:35:39 INFO]: [ViaVersion] Loading 1.17 -> 1.18 mappings...
+[14:35:39 INFO]: [floodgate] Floodgate를 부팅하는 데 651밀리초가 걸렸습니다
+[14:35:40 INFO]: [ 시스템 정보 ] Bedrock 크로스플랫폼 플레이 시스템 준비 [Floodgate 활성화됨]
+[14:35:54 INFO]: [Geyser-Spigot] Enabling Geyser-Spigot v2.0.1-SNAPSHOT
+[14:35:54 INFO]: [Geyser-Spigot] Floodgate 키를 자동으로 불러왔습니다.
+[14:35:54 INFO]: [Geyser-Spigot] ******************************************
+[14:35:54 INFO]: [Geyser-Spigot]
+[14:35:54 INFO]: [Geyser-Spigot] Geyser 버전 2.3.1-SNAPSHOT (git-master-a435288)(을)를 불러오는 중...
+[14:35:54 INFO]: [Geyser-Spigot]
+[14:35:54 INFO]: [Geyser-Spigot] ******************************************
+[14:35:57 INFO]: [Geyser-Spigot] Floodgate 키를 불러왔습니다!
+[14:35:58 INFO]: [Geyser-Spigot] Geyser를 UDP 포트 19132에서 시작했습니다
+[14:35:58 INFO]: [Geyser-Spigot] 완료! (3.781초) /geyser help로 도움말을 참조하세요.
+[14:36:14 INFO]: [ 시스템 정보 ] Bedrock 유저와의 크로스-플랫폼 플레이 시스템 부팅됨
+[14:36:14 INFO]: 서버가 시작되었습니다! (?초 걸림), 도움말을 보려면 help 또는 ?를 입력하세요.
+```
+
+# 상용화 버전
+PurpurMC(취소됨)
+PlazmaMC(예정, 저장소 생성됨)
+LeavesMC(예정, 저장소 생성됨)
+Prismarine(지원 중단, 예정)
+SparklyPaper -> SparklyNogyangSpigot(예정)
+Toki(예정)
+
+
 # 공지
 NogyangSpigot이 공식적으로 Airplane Patch를 적용하였습니다.
 이후 버전에서는 Pufferfish-Airplane Patch, Tuinity API가 적용된 녹양스피곳을 기반으로 Pufferfish 포트를 만드시는 경우 Pufferfish-Server-Changes.patch를 적용하지 않아도 됩니다.
@@ -12,6 +86,10 @@ NogyangSpigot has applied Airplane Patch.
 from future versions, if you are making Pufferfish Ported Forks with NogyangSpigot,
 You don't have to add Pufferfish-Server-Changes.patch
 (일부 클래스에서 Flare가 제거되었으며 이후 spark가 이 자리를 꿰찰 예정입니다. 잠시 기다려 주십시오.)
+
+[BukkitNews#116749](https://bukkit.org/threads/safeguarding-against-unchecked-and-potentially-damaging-plugins.116749/)의 안전장치 우회를 위한 작업으로,
+PingAPI가 Bukkit의 ServerListPingEvent를 대신합니다.
+해당 업데이트가 곧 출시됩니다. 
 # 빌드 일람
 (i) 액션에서 검출
 (X) 빌드 실패
@@ -20,6 +98,27 @@ Commit
 Beta Build 1 - i
 Beta Build 2 - i
 Beta Build 3 - i
+
+# 경고
+일부 안티치트는 NogyangSpigot이 크로스 플레이 서버가 되었을 경우 호환되지 않습니다.
+```
+Anticheat List of shame:
+다음은 NogyangSpigot을 사용하는 서버의 서버장이 Spigot에서 구입하였을때 돈을 낭비하게되는 안티치트 목록입니다.
+Wraith, 5유로 낭비(플러그인 설명에서 봤듯이, Wraith는 핵 유저에게 저주를 내리는데, 베드락 유저를 핵 유저로 오인하고 저주를 내립니다.)
+```
+```
+다음은 NogyangSpigot 서버에 좋은 유료 안티치트 목록입니다!
+Spartan + Syn: 25+37.5 달러, 만일 NogyangSpigot으로 램이 32-64G나 되는 최대규모 서버를 열고 싶다면 Syn과 Spartan을 사용해보실 수 있습니다.
+```
+```
+[00:01:01 WARN] .CensingSmile123(IP: ./127.0.0.1:0, UUID: 00000000-0000-0009-01f322b1b6b3, 베드락 에디션 플레이어: 예)의 연결을 끊는 중입니다: You have been banned for cheating.
+[00:01:01 WARN] .CensingSmile123(IP: ./127.0.0.1:0, UUID: 00000000-0000-0009-01f322b1b6b3, 베드락 에디션 플레이어: 예)님이 접속을 종료하였습니다: You have been banned for cheating.
+[00:01:01 WARN] NogyangSpigot Crossplay AutoSys: Bedrock Player .CensingSmile123(IP: ./127.0.0.1:0, UUID: 00000000-0000-0009-01f322b1b6b3, Floodgate Player: Yes)의 연결이 끊어졌습니다.
+[00:01:01 WARN] NogyangSpigot Crossplay AutoSys: 사유 확인 중...
+[00:01:01 WARN] NogyangSpigot Crossplay AutoSys: Panic: 안티치트가 Bedrock 플레이어를 핵 플레이어로 오인하여 차단하였습니다!
+[00:01:01 WARN] NogyangSpigot Crossplay AutoSys: Panic: 해결: .CensingSmile123의 차단을 풉니다.
+[00:01:01 WARN] NogyangSpigot Crossplay AutoSys: Panic: 해결: .CensingSmile123의 차단이 해제되었습니다.
+```
 # News
 Upstream Has Removed Paper-MojangAPI, i don't know where did it go.
 i think that the Paper-MojangAPI is removed in future versions.
@@ -88,7 +187,7 @@ While Enabled and when it kicked Mass Bedrock players:
 ```
 
 ## PSA
-> [!CAUTION]
+> [!CAUTION] 경고
 > Attention all NogyangSpigot users, This is an urgent Public Service Announcement from the NogyangSpigot Plugin Product Safety Commission. We have identified a critical issue with the Kauri anti-cheat plugin, manufactured by funkemunky.
 >
 > It has come to our attention that this plugin is causing false positives for Bedrock players.
