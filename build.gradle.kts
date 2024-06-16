@@ -118,13 +118,7 @@ paperweight {
     // ./gradlew :ForkTest-API:publish[ToMavenLocal]
     publishing {
         repositories {
-            maven {
-                name = "myRepoSnapshots"
-                url = uri("https://my.repo/")
-                // See Gradle docs for how to provide credentials to PasswordCredentials
-                // https://docs.gradle.org/current/samples/sample_publishing_credentials.html
-                credentials(PasswordCredentials::class)
-            }
+         mavenCentral()
         }
     }
 }
