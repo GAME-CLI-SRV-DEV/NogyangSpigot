@@ -45,5 +45,7 @@ jobs:
         with:
           name: NogyangSpigotInstaller
           path: build/libs/
+      - name: publish
+        run: ./gradlew publish
       - name: Publish API To Paper
         run: ./gradlew generatedevelopmentbundle
