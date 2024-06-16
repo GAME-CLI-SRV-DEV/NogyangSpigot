@@ -1,0 +1,480 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: From: Outfit8TSB <sunnybunnies09@naver.com>
+Date: Sun, 16 Jun 2024 23:06:13 +0000
+Subject: [PATCH] PingAPI
+
+diff --git a/src/main/java/org/bukkit/event/server/ServerListPingEvent.java b/src/main/java/org/bukkit/event/server/ServerListPingEvent.java
+index 72ebc29d..b633cdcf 100644
+--- a/src/main/java/org/bukkit/event/server/ServerListPingEvent.java
++++ b/src/main/java/org/bukkit/event/server/ServerListPingEvent.java
+@@ -14,8 +14,9 @@ import org.jetbrains.annotations.NotNull;
+  * Called when a server list ping is coming in. Displayed players can be
+  * checked and removed by {@link #iterator() iterating} over this event.
+  * <br>
+- * <b>Note:</b> The players in {@link #iterator()} will not be shown in the
+- * server info if {@link Bukkit#getHideOnlinePlayers()} is true.
++ * <b>Note:</b> The players in {@link #iterator()} will not be shown.
++ * Deprecated: ServerListPingEvent has been replaced with PingAPI. it is recommended to replace it. If You Like MOTD Animations, Use PingAPI. #PaperSucksAnimationsRocksGradientRocksToo
++ * @deprecated ServerListPingEvent has been deprecated in favour of {@link <a href="https://henry-anderson.github.io/PingAPI/">PingAPI</a>! PingAPI is Recommended to create MOTD Plugins with Animations! #PaperSucksAnimationsRocksGradientRocksToo
+  */
+ public class ServerListPingEvent extends ServerEvent implements Iterable<Player> {
+     private static final int MAGIC_PLAYER_COUNT = Integer.MIN_VALUE;
+diff --git a/src/main/java/org/henrya/pingapi/PingAPI.java b/src/main/java/org/henrya/pingapi/PingAPI.java
+new file mode 100644
+index 00000000..edf61fce
+--- /dev/null
++++ b/src/main/java/org/henrya/pingapi/PingAPI.java
+@@ -0,0 +1,32 @@
++package org.henrya.pingapi;
++
++import java.util.ArrayList;
++import java.util.List;
++import java.util.logging.Level;
++
++import org.bukkit.Bukkit;
++import org.bukkit.event.Listener;
++
++/**
++ * An API that gives developers more control over how they reply to ping requests
++ * @author Henry Anderson
++ */
++public class PingAPI {
++	private static List<PingListener> listeners;
++	
++	/**
++	 * Registers a new PingListener instance
++	 * @param listener The PingListener implementation
++	 */
++	public static void registerListener(PingListener listener) {
++		listeners.add(listener);
++	}
++	
++	/**
++	 * Returns a List of all PingListener's that have been registered
++	 * @return Return's a List of PingListener
++	 */
++	public static List<PingListener> getListeners() {
++		return listeners;
++	}
++}
+\ No newline at end of file
+diff --git a/src/main/java/org/henrya/pingapi/PingEvent.java b/src/main/java/org/henrya/pingapi/PingEvent.java
+new file mode 100644
+index 00000000..20ac55c1
+--- /dev/null
++++ b/src/main/java/org/henrya/pingapi/PingEvent.java
+@@ -0,0 +1,100 @@
++package org.henrya.pingapi;
++
++import java.lang.reflect.Constructor;
++import java.lang.reflect.InvocationTargetException;
++
++import org.bukkit.Bukkit;
++
++/**
++ * An event that is called when the server receives a ping
++ * @author Henry Anderson
++ */
++public class PingEvent {
++	private PingReply reply;
++	private boolean cancelEvent;
++	private boolean cancelPong;
++	
++	/**
++	 * Created a new PingEvent instance
++	 * @param reply The reply
++	 */
++	public PingEvent(PingReply reply) {
++		this.reply = reply;
++	}
++	
++	/**
++	 * Returns the PingReply instance
++	 * @return The reply
++	 */
++	public PingReply getReply() {
++		return this.reply;
++	}
++	
++	/**
++	 * Cancels the event
++	 * @param cancel A boolean
++	 */
++	public void setCancelled(boolean cancel) {
++		this.cancelEvent = cancel;
++	}
++	
++	/**
++	 * Prevents the PacketStatusOutPong packet from being sent
++	 * The PacketStatusOutPong packet closes the connection and must be cancelled to create animations
++	 * @param cancel A boolean
++	 */
++	public void cancelPong(boolean cancel) {
++		this.cancelPong = cancel;
++	}
++	
++	/**
++	 * Returns whether the event has been cancelled
++	 * @return A boolean
++	 */
++	public boolean isCancelled() {
++		return this.cancelEvent;
++	}
++	
++	/**
++	 * Returns whether the PacketStatusOutPong packet has been cancelled
++	 * @return A boolean
++	 */
++	public boolean isPongCancelled() {
++		return this.cancelPong;
++	}
++	
++	/**
++	 * Creates a new ServerInfoPacket from a PingReply instance
++	 * @param reply The reply
++	 * @return A ServerInfoPacket instance
++	 */
++	public ServerInfoPacket createNewPacket(PingReply reply) {
++		try {
++			String name = Bukkit.getServer().getClass().getPackage().getName();
++	        String version = name.substring(name.lastIndexOf('.') + 1);
++	        Class<?> packet = Class.forName("org.henrya.pingapi." + version + ".ServerInfoPacketHandler");
++	        Constructor<?> constructor = packet.getDeclaredConstructor(reply.getClass());
++			return (ServerInfoPacket) constructor.newInstance(reply);
++		} catch(ClassNotFoundException | NoSuchMethodException | SecurityException | InstantiationException | IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {
++			e.printStackTrace();
++		}
++		return null;
++	}
++	
++	/**
++	 * Sends a pong packet to the client which closes the connection
++	 * The pong packet changes the icon to the right of the player count from red to green
++	 */
++	public void sendPong() {
++		try {
++			String name = Bukkit.getServer().getClass().getPackage().getName();
++	        String version = name.substring(name.lastIndexOf('.') + 1);
++	        Class<?> packet = Class.forName("org.henrya.pingapi." + version + ".PongPacketHandler");
++	        Constructor<?> constructor = packet.getDeclaredConstructor(this.getClass());
++			PongPacket pong = (PongPacket) constructor.newInstance(this);
++			pong.send();
++		} catch(ClassNotFoundException | NoSuchMethodException | SecurityException | InstantiationException | IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {
++			e.printStackTrace();
++		}
++	}
++}
+\ No newline at end of file
+diff --git a/src/main/java/org/henrya/pingapi/PingListener.java b/src/main/java/org/henrya/pingapi/PingListener.java
+new file mode 100644
+index 00000000..fee30d3a
+--- /dev/null
++++ b/src/main/java/org/henrya/pingapi/PingListener.java
+@@ -0,0 +1,14 @@
++package org.henrya.pingapi;
++
++/**
++ * An interface for creating PingAPI listeners
++ * @author Henry Anderson
++ */
++public interface PingListener {
++	
++	/**
++	 * A method that is invoked when a client pings the server
++	 * @param event The PingEvent
++	 */
++	public void onPing(PingEvent event);
++}
+\ No newline at end of file
+diff --git a/src/main/java/org/henrya/pingapi/PingReply.java b/src/main/java/org/henrya/pingapi/PingReply.java
+new file mode 100644
+index 00000000..c28624b9
+--- /dev/null
++++ b/src/main/java/org/henrya/pingapi/PingReply.java
+@@ -0,0 +1,172 @@
++package org.henrya.pingapi;
++
++import java.util.List;
++
++import org.bukkit.Bukkit;
++import org.bukkit.util.CachedServerIcon;
++
++/**
++ * A class that defines the data that will be sent to the client in a PacketStatusOutServerInfo packet
++ * @author Henry Anderson
++ */
++@SuppressWarnings("unused")
++public class PingReply {
++	private Object ctx;
++	private String motd;
++	private int onlinePlayers;
++	private int maxPlayers;
++	private int protocolVersion;
++	private String protocolName;
++	private List<String> playerSample;
++	private boolean hidePlayerSample = false;
++	private CachedServerIcon icon = Bukkit.getServerIcon();
++	
++	/**
++	 * Creates a class to store data that will be sent to the client in a PacketStatusOutServerInfo packet
++	 * @param ctx The ChannelHandlerContext instance
++	 * @param motd The MOTD
++	 * @param onlinePlayers The amount of online players
++	 * @param maxPlayers The maximum amount of players
++	 * @param protocolVersion The protocol version
++	 * @param protocolName The name of the protocol
++	 * @param playerSample A list of player names
++	 */
++	public PingReply(Object ctx, String motd, int onlinePlayers, int maxPlayers, int protocolVersion, String protocolName, List<String> playerSample) {
++		this.ctx = ctx;
++		this.motd = motd;
++		this.onlinePlayers = onlinePlayers;
++		this.maxPlayers = maxPlayers;
++		this.protocolVersion = protocolVersion;
++		this.protocolName = protocolName;
++		this.playerSample = playerSample;
++	}
++	
++	/**
++	 * Returns the amount of online players to be sent to the client
++	 * @return An integer representing the online players
++	 */
++	public int getOnlinePlayers() {
++		return this.onlinePlayers;
++	}
++	
++	/**
++	 * Returns the maximum amount of players to be sent to the client
++	 * @return An integer representing the max players
++	 */
++	public int getMaxPlayers() {
++		return this.maxPlayers;
++	}
++	
++	/**
++	 * Returns the MOTD to be sent to the client
++	 * @return A String representing the MOTD
++	 */
++	public String getMOTD() {
++		return this.motd;
++	}
++	
++	/**
++	 * Returns the protocol version to be sent to the client
++	 * @return An integer representing the protocol version
++	 */
++	public int getProtocolVersion() {
++		return this.protocolVersion;
++	}
++	
++	/**
++	 * Returns the protocol name to be sent to the client
++	 * @return A String representing the protocol's name
++	 */
++	public String getProtocolName() {
++		return this.protocolName;
++	}
++	
++	/**
++	 * Returns a list of player names to be sent to the client
++	 * @return A list of player names
++	 */
++	public List<String> getPlayerSample() {
++		return this.playerSample;
++	}
++	
++	/**
++	 * Returns whether the player sample is to be hidden
++	 * @return A boolean
++	 */
++	public boolean isPlayerSampleHidden() {
++		return this.hidePlayerSample;
++	}
++	
++	/**
++	 * Returns the server's icon that is to be sent to the client
++	 * @return The server icon
++	 */
++	public CachedServerIcon getIcon() {
++		return this.icon;
++	}
++	
++	/**
++	 * Sets the amount of online players to be sent to the client
++	 * @param onlinePlayers Amount of online players
++	 */
++	public void setOnlinePlayers(int onlinePlayers) {
++		this.onlinePlayers = onlinePlayers;
++	}
++	
++	/**
++	 * Sets the maximum amount of players to be sent to the client
++	 * @param maxPlayers Amount of maximum players
++	 */
++	public void setMaxPlayers(int maxPlayers) {
++		this.maxPlayers = maxPlayers;
++	}
++	
++	/**
++	 * Sets the MOTD to be sent to the client
++	 * @param motd The MOTD
++	 */
++	public void setMOTD(String motd) {
++		this.motd = motd;
++	}
++	
++	/**
++	 * Sets the protocol version to be sent to the client
++	 * @param protocolVersion The protocol version
++	 */
++	public void setProtocolVersion(int protocolVersion) {
++		this.protocolVersion = protocolVersion;
++	}
++	
++	/**
++	 * Sets the protocol name to be sent to the client
++	 * @param protocolName The protocol's name
++	 */
++	public void setProtocolName(String protocolName) {
++		this.protocolName = protocolName;
++	}
++	
++	/**
++	 * Sets the list of player names that will be sent to the client
++	 * Note that if the player sample is hidden this list will not be sent
++	 * @param playerSample New list of player names
++	 */
++	public void setPlayerSample(List<String> playerSample) {
++		this.playerSample = playerSample;
++	}
++	
++	/**
++	 * Sets whether the player sample should be hidden
++	 * @param hidePlayerSample A boolean
++	 */
++	public void hidePlayerSample(boolean hidePlayerSample) {
++		this.hidePlayerSample = hidePlayerSample;
++	}
++	
++	/**
++	 * Sets the icon to be sent to the client
++	 * @param icon The icon
++	 */
++	public void setIcon(CachedServerIcon icon) {
++		this.icon = icon;
++	}
++}
+\ No newline at end of file
+diff --git a/src/main/java/org/henrya/pingapi/PongPacket.java b/src/main/java/org/henrya/pingapi/PongPacket.java
+new file mode 100644
+index 00000000..38ee9a01
+--- /dev/null
++++ b/src/main/java/org/henrya/pingapi/PongPacket.java
+@@ -0,0 +1,34 @@
++package org.henrya.pingapi;
++
++/**
++ * An abstract class for creating PacketStatusOutPong packets from PingEvent instances 
++ * @author Henry Anderson
++ */
++public abstract class PongPacket {
++	private PingEvent event;
++	
++	public PongPacket(PingEvent event) {
++		this.event = event;
++	}
++	
++	/**
++	 * Sends the packet to the server 
++	 */
++	public abstract void send();
++	
++	/**
++	 * Returns the PingEvent instance
++	 * @return The reply
++	 */
++	public PingEvent getEvent() {
++		return this.event;
++	}
++	
++	/**
++	 * Sets the PingEvent instance
++	 * @param reply The reply
++	 */
++	public void setEvent(PingEvent event) {
++		this.event = event;
++	}
++}
+diff --git a/src/main/java/org/henrya/pingapi/ServerInfoPacket.java b/src/main/java/org/henrya/pingapi/ServerInfoPacket.java
+new file mode 100644
+index 00000000..c76992d1
+--- /dev/null
++++ b/src/main/java/org/henrya/pingapi/ServerInfoPacket.java
+@@ -0,0 +1,34 @@
++package org.henrya.pingapi;
++
++/**
++ * An abstract class for creating PacketStatusOutServerInfo packets from PingReply instances 
++ * @author Henry Anderson
++ */
++public abstract class ServerInfoPacket {
++	private PingReply reply;
++	
++	public ServerInfoPacket(PingReply reply) {
++		this.reply = reply;
++	}
++	
++	/**
++	 * Sends the packet to the server 
++	 */
++	public abstract void send();
++	
++	/**
++	 * Returns the PingReply instance
++	 * @return The reply
++	 */
++	public PingReply getReply() {
++		return this.reply;
++	}
++	
++	/**
++	 * Sets the PingReply instance
++	 * @param reply The reply
++	 */
++	public void setReply(PingReply reply) {
++		this.reply = reply;
++	}
++}
+diff --git a/src/main/java/org/henrya/pingapi/reflect/ReflectUtils.java b/src/main/java/org/henrya/pingapi/reflect/ReflectUtils.java
+new file mode 100644
+index 00000000..90acf6ae
+--- /dev/null
++++ b/src/main/java/org/henrya/pingapi/reflect/ReflectUtils.java
+@@ -0,0 +1,26 @@
++package org.henrya.pingapi.reflect;
++
++import java.lang.reflect.Field;
++
++/**
++ * A class to make dealing with reflection slightly easier.
++ * @author Henry Anderson
++ */
++public class ReflectUtils {
++	
++	/**
++	 * Iterates through all of the fields in a class and returns the first one that is an instance of the specified class type
++	 * @param clazz The class to check
++	 * @param type The type of the field
++	 * @return The field
++	 */
++	public static Field getFirstFieldByType(Class<?> clazz, Class<?> type) {
++		for(Field field : clazz.getDeclaredFields()) {
++			field.setAccessible(true);
++			if(field.getType() == type) {
++				return field;
++			}
++		}
++		return null;
++	}
++}
+\ No newline at end of file
