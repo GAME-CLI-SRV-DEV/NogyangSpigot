@@ -78,6 +78,20 @@ Prismarine(지원 중단, 예정)
 SparklyPaper -> SparklyNogyangSpigot(예정)
 Toki(예정)
 
+# 플러그인 만들기
+NogyangSpigot을 플러그인에 사용하려면, Jitpack(com.github.GAME-CLI-SRV-DEV:NogyangSpigot:Version)을 사용하거나 직접 빌드해야합니다.
+```
+		repositories {
+			mavenCentral()
+			maven { url 'https://www.jitpack.io' }
+		}
+
+	dependencies {
+	        compileonly 'com.github.GAME-CLI-SRV-DEV:NogyangSpigot:main-SNAPSHOT'
+	}
+```
+'com.github.GAME-CLI-SRV-DEV:NogyangSpigot:main-SNAPSHOT'에는 NogyangSpigot-API가 내장되어 있으며, 1.20.6-R0.1-SNAPSHOT이 현재 버전입니다.
+또한 이를 사용하여 플러그인이 NogyangSpigot 서버 프로그램에 액세스할 수 있습니다.
 
 # 공지
 NogyangSpigot이 공식적으로 Airplane Patch를 적용하였습니다.
