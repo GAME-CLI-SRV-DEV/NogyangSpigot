@@ -118,7 +118,7 @@ paperweight {
     // ./gradlew :ForkTest-API:publish[ToMavenLocal]
     publishing {
         repositories {
-         maven(PaperMavenPublicUrl)
+         maven(paperMavenPublicUrl)
         }
     }
 }
