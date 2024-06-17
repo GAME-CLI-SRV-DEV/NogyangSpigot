@@ -118,7 +118,9 @@ paperweight {
     // ./gradlew :ForkTest-API:publish[ToMavenLocal]
     publishing {
         repositories {
-         mavenCentral()
+         maven {
+          url = uri("https://repo.minebench.de")
+           }
         }
     }
 }
