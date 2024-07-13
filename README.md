@@ -1,9 +1,14 @@
-# NogyangSpigot
+# NogyangSpigot[No Longer Updated]
 a Paper Fork to Memorize the life of the 2 cats called Beodeul And Nogyang at Nogyang Middle School.
 
 Fun Fact: This Server Also Counted as Minecraft: Java Edition X Minecraft: Bedrock Edition Crossplay Server Software. But Note that Geyser-Spigot & Floodgate-Spigot is Required to run it as Bedrock-Java Crossplay Server. 
 
 ("Starting Minecraft: Bedrock Edition + Java Edition Crossplay Server version 1.20.6 + 1.20.80 Java: 1.20.5/6, Bedrock Edition: 1.20.80") 
+> [!CAUTION]
+> This Project is no longer maintained.
+> we only have one member.
+> Please Join Our Organization
+> to maintain it
 
 # 구현 중인 API
 플러그인 API:
