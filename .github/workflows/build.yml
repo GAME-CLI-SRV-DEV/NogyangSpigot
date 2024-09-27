@@ -25,7 +25,7 @@ jobs:
       - name: Configure Git User Details
         run: git config --global user.email "actions@github.com" && git config --global user.name "Github Actions"
       - name: Announcement
-        run: echo Warning - The NogyangSpigot has Discontinued and it will No Longer Developed. We Recommend Immediate Migration to Sangsang as the most functions of it will be transferred to Sangsang. Thank You For Using NogyangSpigot. 녹양스피곳은 플랫폼 지원이 중단되어 더 이상 업데이트 되지 않습니다. 크로스 플레이를 제외한 많은 기능들이 상상으로 옮겨갈 것이므로 상상으로의 마이그레이션을 시작해야합니다. 항상 스펀지-스피곳 플랫폼 통합에 전념해왔던 녹양스피곳을 사용해 주셔서 감사합니다. 새로운 플랫폼인 상상에서 다시 만나요.
+        run: echo Warning - The NogyangSpigot has Discontinued and it will No Longer Developed. We Recommend Immediate Migration to Sangsang as the most functions of it will be transferred to Sangsang. Thank You For Using NogyangSpigot that was trying to support sponge and more. We Hope you Meet Again In New Platform of NogyangSpigot Project, Sangsang. 녹양스피곳은 플랫폼 지원이 중단되어 더 이상 업데이트 되지 않습니다. 크로스 플레이를 제외한 많은 기능들이 상상으로 옮겨갈 것이므로 상상으로의 마이그레이션을 시작해야합니다. 항상 스펀지-스피곳 플랫폼 통합에 전념해왔던 녹양스피곳을 사용해 주셔서 감사합니다. 새로운 플랫폼인 상상에서 다시 만나요.
       - name: Apply Patches
         run: ./gradlew applyPatches
       - name: Build NogyangSpigot Jar(Main Jar)
