@@ -1,3 +1,7 @@
+# 녹양스피곳이 상상으로 합병되었습니다.
+크로스플레이 지원을 제외한 일부 기능은 상상에 온전히 옮겨집니다.
+그동안 NogyangSpigot을 사랑해주셔서 감사합니다. 
+
 # NogyangSpigot(DED)
 a Paper Fork to Memorize the life of the 2 cats called Beodeul And Nogyang at Nogyang Middle School.
 
@@ -26,7 +30,7 @@ Bukkit API, Spigot API, Paper API, Pufferfish API
 
 플러그인:
 
-PingAPI, Geyser API(GeyserMC를 플러그인 폴더애 삽입해야 작동)
+PingAPI, Geyser API(GeyserMC를 플러그인 폴더에 삽입해야 작동)
 
 
 # 지원하는 로더
