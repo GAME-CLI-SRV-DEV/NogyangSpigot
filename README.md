@@ -1,5 +1,4 @@
-# 녹양스피곳이 상상으로 합병되었습니다.
-크로스플레이 지원을 제외한 일부 기능은 상상에 온전히 옮겨집니다.
+# 녹양스피곳이 Geyser와 ViaVersion, Sponge, Rainbow를 완전히 통합한 RING으로 변경됩니다.
 그동안 NogyangSpigot을 사랑해주셔서 감사합니다. 
 
 # NogyangSpigot(DED)
