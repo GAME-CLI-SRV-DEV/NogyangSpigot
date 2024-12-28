@@ -1,5 +1,5 @@
-# 녹양스피곳이 Geyser와 ViaVersion, Sponge, Rainbow를 완전히 통합한 RING으로 변경됩니다.
-그동안 NogyangSpigot을 사랑해주셔서 감사합니다. 
+# 녹양스피곳이 다시 태어납니다.
+구 버전 아카이브입니다.
 
 # NogyangSpigot(DED)
 a Paper Fork to Memorize the life of the 2 cats called Beodeul And Nogyang at Nogyang Middle School.
